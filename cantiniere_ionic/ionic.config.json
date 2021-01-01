@@ -1,0 +1,7 @@
+{
+  "name": "cantiniere_ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
