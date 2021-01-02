@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./layout/admin/admin.module').then( m => m.AdminPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
   },
 ];
 

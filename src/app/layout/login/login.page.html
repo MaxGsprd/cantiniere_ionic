@@ -1,16 +1,28 @@
+<ion-header class="ion-no-border" collapse="condense">
+  <ion-toolbar color='danger'>
+    <ion-title slot='start' size='large'>Connexion</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="home" text='retour'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
-  <ion-header class="ion-no-border" collapse="condense">
-    <ion-toolbar color='danger'>
-      <ion-title slot='start' size='large'>Connexion</ion-title>
-      <ion-buttons slot="end">
-        <ion-back-button defaultHref="home" text='retour'></ion-back-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
-</form>
-
-
-
-
+  <form [formGroup]="userProfile" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label for="email">Adresse e-mail</ion-label>
+      <ion-input name="email" type="email" id="email" formControlName="email" placeholder="Votre adresse e-mail"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label for="password">Mot de passe</ion-label>
+      <ion-input name="password" type="password" id="password"  formControlName="password"  placeholder="Votre mot de passe"></ion-input>
+    </ion-item>
+    <!-- <ion-item>
+      <a [routerLink]="['/forgotpassword']">Mot de passe oublié?</a>
+    </ion-item>
+    <ion-item>
+     <a [routerLink]="['/inscription']">Nouveau? Crée un compte</a>
+    </ion-item> -->
+    <button ion-button  type="submit" >Connexion</button> 
+  </form>
 </ion-content>
