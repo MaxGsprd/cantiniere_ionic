@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './helpers/auth.guard';
+import {AdminPage} from 'src/app/layout/admin/admin.page';
 
 const routes: Routes = [
   {
@@ -17,6 +19,9 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    component: AdminPage,
+    canActivate: [AuthGuard],
+    data: { lunchLadyRole: true } ,
     loadChildren: () => import('./layout/admin/admin.module').then( m => m.AdminPageModule)
   },
   {
