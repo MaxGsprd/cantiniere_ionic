@@ -20,30 +20,30 @@
   <ion-grid>
     <ion-row>
       <ion-col size-md="6">
-        <ion-card color="danger" class="ion-text-center">
+        <ion-card routerLink="/menus" color="danger" class="ion-text-center">
           <ion-card-header>
             <ion-icon class="icon" size="large" name="fast-food-outline"></ion-icon>
-            <ion-card-title routerLink="/menus">Menu</ion-card-title>
+            <ion-card-title>Menu</ion-card-title>
           </ion-card-header>
         </ion-card>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col *ngIf="isLogged" size-md="6">
-        <ion-card color="danger" class="ion-text-center">
+        <ion-card routerLink="/profil" color="danger" class="ion-text-center">
           <ion-card-header>
             <ion-icon class="icon" size="large" name="person"></ion-icon>
-            <ion-card-title routerLink="/profil">Profil</ion-card-title>
+            <ion-card-title>Profil</ion-card-title>
           </ion-card-header>
         </ion-card>
       </ion-col>
     </ion-row>  
     <ion-row>
       <ion-col *ngIf="isLogged && isLunchLady" size-md="6">
-        <ion-card color="danger" class="ion-text-center">
+        <ion-card routerLink="/admin" color="danger" class="ion-text-center">
           <ion-card-header>
             <ion-icon class="icon" size="large" name="storefront-outline"></ion-icon>
-            <ion-card-title routerLink="/admin">Admin</ion-card-title>
+            <ion-card-title >Admin</ion-card-title>
           </ion-card-header>
         </ion-card>
       </ion-col>
