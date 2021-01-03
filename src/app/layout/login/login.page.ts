@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,14 @@ export class LoginPage implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private fb:FormBuilder) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private fb:FormBuilder, private router : Router) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
+      if (this.isLoggedIn) {
+        this.router.navigate(['/home']);
+      }
     }
     this.editForm();
   }
@@ -43,12 +47,11 @@ export class LoginPage implements OnInit {
         this.tokenStorage.saveUser(user);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.reloadPage();
+        window.location.reload();
     },
     ).catch(err => {
       console.log('err : ', err);
       this.errorMessage = err.error.message;
-      //console.log(this.errorMessage);
       this.isLoginFailed = true;
     }
     )

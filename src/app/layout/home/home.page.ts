@@ -21,6 +21,7 @@ export const ROUTES: Routered[] = [
 export class HomePage {
 
   currentUser: any;
+  isLogged :boolean = false;
   isLunchLady: Boolean;
   navItems: any[];
 
@@ -30,6 +31,7 @@ export class HomePage {
     if(this.token_service.getUser()) {
       this.currentUser = this.token_service.getUser().user;
       this.isLunchLady = this.currentUser.isLunchLady;
+      this.isLogged = true;
     }
     this.navItems = ROUTES.filter(navItem => navItem);
   }
