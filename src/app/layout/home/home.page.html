@@ -22,10 +22,9 @@
       <ion-col size-md="6">
         <ion-card color="danger" class="ion-text-center">
           <ion-card-header>
-            <ion-card-title  routerLink="/menus">Menu</ion-card-title>
+            <ion-icon class="icon" size="large" name="fast-food-outline"></ion-icon>
+            <ion-card-title routerLink="/menus">Menu</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -33,10 +32,9 @@
       <ion-col *ngIf="isLogged" size-md="6">
         <ion-card color="danger" class="ion-text-center">
           <ion-card-header>
+            <ion-icon class="icon" size="large" name="person"></ion-icon>
             <ion-card-title routerLink="/profil">Profil</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>  
@@ -44,15 +42,14 @@
       <ion-col *ngIf="isLogged && isLunchLady" size-md="6">
         <ion-card color="danger" class="ion-text-center">
           <ion-card-header>
+            <ion-icon class="icon" size="large" name="storefront-outline"></ion-icon>
             <ion-card-title routerLink="/admin">Admin</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class="ion-margin-top" size-md="6">
+      <ion-col *ngIf="!isLogged" class="ion-margin-top" size-md="6">
         <div id="container">
           <p>Bienvenue veuillez vous identifiez afin de pouvoir commander.</p>
         </div>
