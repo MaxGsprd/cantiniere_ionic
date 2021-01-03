@@ -20,6 +20,14 @@ const routes: Routes = [
     loadChildren: () => import('./layout/admin/admin.module').then( m => m.AdminPageModule)
   },
   {
+    path: 'menus',
+    loadChildren: () => import('./layout/menus/menus.module').then( m => m.MenusPageModule)
+  },
+  {
+    path: 'profil',
+    loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
