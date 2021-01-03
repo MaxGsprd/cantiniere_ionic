@@ -1,6 +1,14 @@
-
+ion-col {
+    height:30%;
+}
 ion-card {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     text-align: center;
     margin: 0;
+}
+
+ion-card-title {
+    margin-top: 5px;
+    font-size: 1.1rem;
+    color: #444;
 }

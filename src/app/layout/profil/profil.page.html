@@ -1,10 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color='danger'>
+    <ion-title slot='start' size='large'>Profil</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="home" text='retour'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
-  <ion-header class="ion-no-border">
-    <ion-toolbar color='danger'>
-      <ion-title slot='start' size='large'>Profil</ion-title>
-      <ion-buttons slot="end">
-        <ion-back-button defaultHref="home" text='retour'></ion-back-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <img src="./madison.jpg" />
+    <ion-card-header>
+      <ion-card-title>Mon profil</ion-card-title>
+      <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
+      <img [src]="currentUser.image64"/>
+    </ion-card-header>
+    <ion-card-content>
+    <form [formGroup]="userForm">
+        <ion-grid>
+          <ion-row>
+            <ion-col size='6'>
+              <ion-label position="floating" for="name">Nom</ion-label>
+              <ion-input type="text" formControlName="name" [readonly]="readonly"></ion-input>
+            </ion-col>
+            <ion-col size='6'>
+              <ion-label position="floating" for="name">Prénom</ion-label>
+              <ion-input  type="text" formControlName="firstname" [readonly]="readonly"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size='6'>
+              <ion-label position="floating" for="name">E-mail</ion-label>
+              <ion-input n type="text" formControlName="email" [readonly]="readonly"></ion-input>
+            </ion-col>
+            <ion-col size='6'>
+              <ion-label position="floating" for="name">Téléphone</ion-label>
+              <ion-input  type="text" formControlName="phone" [readonly]="readonly"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
