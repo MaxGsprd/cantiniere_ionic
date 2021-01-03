@@ -8,21 +8,37 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="userProfile" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label for="email">Adresse e-mail</ion-label>
-      <ion-input name="email" type="email" id="email" formControlName="email" placeholder="Votre adresse e-mail"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label for="password">Mot de passe</ion-label>
-      <ion-input name="password" type="password" id="password"  formControlName="password"  placeholder="Votre mot de passe"></ion-input>
-    </ion-item>
-    <!-- <ion-item>
-      <a [routerLink]="['/forgotpassword']">Mot de passe oublié?</a>
-    </ion-item>
-    <ion-item>
-     <a [routerLink]="['/inscription']">Nouveau? Crée un compte</a>
-    </ion-item> -->
-    <button ion-button  type="submit" >Connexion</button> 
-  </form>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md='6' offset-md='3'>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Me connecter</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="userProfile" (ngSubmit)="onSubmit()" class='ion-margin-vertical'>
+              <ion-item class='ion-margin-vertical'> 
+                <ion-label position="floating" for="email">Adresse e-mail</ion-label>
+                <ion-input name="email" type="email" id="email" formControlName="email" placeholder="Votre adresse e-mail"></ion-input>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="password">Mot de passe</ion-label>
+                <ion-input name="password" type="password" id="password" formControlName="password"  placeholder="Votre mot de passe"></ion-input>
+              </ion-item>
+              <div class="ion-text-center ion-margin-top">
+                <ion-button class="ion-margin-vertical" size="small" fill="solid" color="danger" type="submit" >Connexion</ion-button> 
+              </div>
+              <div class='ion-margin-vertical small-text'>
+                <a [routerLink]="['/forgotpassword']">Mot de passe oublié ?</a>
+              </div>
+              <div class='ion-margin-vertical small-text'>
+                <a [routerLink]="['/inscription']">Nouveau ? Créer un compte</a>
+              </div>
+
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
