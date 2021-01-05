@@ -1,9 +1,97 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>inscription</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar color='danger'>
+    <ion-title slot='start' size='large'>Inscription</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="home" text='retour'></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md='6' offset-md='3'>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Formulaire d'inscription</ion-card-title>
+            <p>Afin de vous inscrire merci de renseigner les champs ci-dessous.</p>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="inscriptionForm" (ngSubmit)="createUser()" class='ion-margin-vertical'>
+              <ion-item class='ion-margin-vertical'> 
+                <ion-label position="floating" name="firstname" for="firstname">Prénom</ion-label>
+                <ion-input class="form-control" type="text" formControlName="firstname" required></ion-input>
+                <div class="red" *ngIf="firstname">
+                  {{ firstname }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="surname">Nom</ion-label>
+                <ion-input class="form-control" name="name" type="text" formControlName="name" required></ion-input>
+                <div class="red" *ngIf="name">
+                  {{ name }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="email">E-mail</ion-label>
+                <ion-input class="form-control" name="email" type="email" formControlName="email" required></ion-input>
+                <div class="red" *ngIf="email">
+                  {{ email }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="password">Mot de passe</ion-label>
+                <ion-input class="form-control" name="password" type="password" formControlName="password" required></ion-input>
+                <div class="red" *ngIf="password">
+                  {{ password }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="sex">Sexe</ion-label>
+                <ion-select  class="form-control" name="sex" formControlName="sex" required>
+                  <ion-select-option value="0">Homme</ion-select-option>
+                  <ion-select-option value="1">Femme</ion-select-option>
+                </ion-select>
+                <div class="red" *ngIf="sex">
+                  {{ sex }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="phone">Téléphone</ion-label>
+                <ion-input class="form-control" name="phone" type="tel" formControlName="phone" required></ion-input>
+                <div class="red" *ngIf="phone">
+                  {{ phone }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="address">Adresse</ion-label>
+                <ion-input class="form-control" name="address" type="text" formControlName="address" required></ion-input>
+                <div class="red" *ngIf="address">
+                  {{ address }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="postalCode">Code postal</ion-label>
+                <ion-input class="form-control" name="postalCode" type="number" formControlName="postalCode" required></ion-input>
+                <div class="red" *ngIf="postalCode">
+                  {{ postalCode }}
+                </div>
+              </ion-item>
+              <ion-item class='ion-margin-vertical'>
+                <ion-label position="floating" for="town">Ville</ion-label>
+                <ion-input class="form-control" name="town" type="text" formControlName="town" required></ion-input>
+                <div class="red" *ngIf="town">
+                  {{ town }}
+                </div>
+              </ion-item>           
+              <div class="ion-text-center ion-margin-top">
+                <ion-button class="ion-margin-vertical" size="small" fill="solid" color="danger" type="submit" >Connexion</ion-button> 
+              </div>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
