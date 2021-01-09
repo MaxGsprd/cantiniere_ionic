@@ -37,4 +37,9 @@ export class UserService {
     console.log(data)
     return this.http.put<any>(this.api_url+'user/register', JSON.stringify(data), {headers: {'Content-Type':  'application/json'}});
   }
+
+  async getUserById(id:number): Promise<any> {
+    return this.http.get<any>(this.api_url + 'user/find/'+id, this.httpOptions).toPromise();
+  }
+  
 }

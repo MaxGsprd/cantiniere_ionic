@@ -10,12 +10,12 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size='6' *ngFor="let menus of listeMenus">
+      <ion-col size='6' *ngFor="let meal of listeMeals" [routerLink]="['/meal', meal.id]">
         <ion-card>
           <ion-card-header>
-            <img src={{menus.img64}} alt="Photo of menu">
-            <ion-card-title>{{menus.label}}</ion-card-title>
-            <ion-card-subtitle>{{menus.priceDF}} €</ion-card-subtitle>
+            <img src={{meal.img64}} alt="Photo of menu">
+            <ion-card-title>{{meal.label}}</ion-card-title>
+            <ion-card-subtitle>{{meal.priceDF}} €</ion-card-subtitle>
           </ion-card-header>
         </ion-card>
       </ion-col>

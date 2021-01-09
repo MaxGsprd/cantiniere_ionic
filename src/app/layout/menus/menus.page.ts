@@ -8,7 +8,8 @@ import { CantiniereService } from "src/app/services/cantiniere.service";
 })
 export class MenusPage implements OnInit {
 
-  listeMenus = [];
+  //listeMenus = [];
+  listeMeals = [];
   panelOpenState = false;
   radioSelected: any;
   allMenus = [];
@@ -19,7 +20,7 @@ export class MenusPage implements OnInit {
     this.getWeekMeals();
   }
 
-  async getWeekMenus(){
+ /* async getWeekMenus(){
     const response = await this.cantiniere_api.getWeekMenus();
     this.listeMenus = response;
     console.log(this.listeMenus);
@@ -31,18 +32,18 @@ export class MenusPage implements OnInit {
         });
       }
     });
-  }
+  }*/
 
   async getWeekMeals() {
     const response = await this.cantiniere_api.getWeekMeal();
-    this.listeMenus = response;
-    console.log(this.listeMenus)
-    this.listeMenus.forEach(element => {
+    this.listeMeals = response;
+    console.log(this.listeMeals)
+    this.listeMeals.forEach(element => {
       this.getImageMealbyId(element.id);
     })
   }
 
-  async getImageMenu(id_menu) {
+  /*async getImageMenu(id_menu) {
     const response = await this.cantiniere_api.getImageMenus(id_menu);
     this.listeMenus.forEach(element => {
       if(element.imageId === response.id){
@@ -50,9 +51,9 @@ export class MenusPage implements OnInit {
       }
     });
     
-  }
+  }*/
 
-  async getImageMeal(id_meal: number) {
+  /*async getImageMeal(id_meal: number) {
     const response = await this.cantiniere_api.getImageMeal(id_meal);
     this.listeMenus.forEach(element => {
       if(element.meals) {
@@ -63,11 +64,11 @@ export class MenusPage implements OnInit {
         });
       }
     })
-  }
+  }*/
 
   async getImageMealbyId(id_meal: number) {
     const response = await this.cantiniere_api.getImageMeal(id_meal);
-    this.listeMenus.forEach(element => {
+    this.listeMeals.forEach(element => {
           if(element.imageId === response.id){
             element.img64 = response.image64;
           }

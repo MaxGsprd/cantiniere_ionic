@@ -41,9 +41,18 @@ const routes: Routes = [
     loadChildren: () => import('./layout/inscription/inscription.module').then( m => m.InscriptionPageModule)
   },
   {
+    path: 'meal/:mealId',
+    loadChildren: () => import('./layout/detail-meal/detail-meal.module').then( m => m.DetailMealPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
+  },  {
+    path: 'cart',
+    loadChildren: () => import('./layout/cart/cart.module').then( m => m.CartPageModule)
   },
+
+  
 ];
 
 @NgModule({
