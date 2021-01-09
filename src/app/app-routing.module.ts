@@ -19,7 +19,6 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminPage,
     canActivate: [AuthGuard],
     data: { lunchLadyRole: true } ,
     loadChildren: () => import('./layout/admin/admin.module').then( m => m.AdminPageModule)
@@ -47,7 +46,8 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'home',
-  },  {
+  },
+  {
     path: 'cart',
     loadChildren: () => import('./layout/cart/cart.module').then( m => m.CartPageModule)
   },

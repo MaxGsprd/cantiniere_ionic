@@ -11,9 +11,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
+import { DialogBoxCreditComponent } from './component/dialog-box-credit/dialog-box-credit.component';
+import { DialogBoxDebitComponent } from './component/dialog-box-debit/dialog-box-debit.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,ConfirmDialogComponent,
+    DialogBoxCreditComponent,
+    DialogBoxDebitComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -22,6 +29,8 @@ import { AuthService } from './services/auth.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     StatusBar,
