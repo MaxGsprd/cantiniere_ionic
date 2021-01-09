@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './helpers/auth.guard';
-import {AdminPage} from 'src/app/layout/admin/admin.page';
+import { AdminPage } from 'src/app/layout/admin/admin.page';
 
 const routes: Routes = [
   {
@@ -44,15 +44,19 @@ const routes: Routes = [
     loadChildren: () => import('./layout/detail-meal/detail-meal.module').then( m => m.DetailMealPageModule)
   },
   {
+    path: 'cart',
+    loadChildren: () => import('./layout/cart/cart.module').then( m => m.CartPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
   {
-    path: 'cart',
-    loadChildren: () => import('./layout/cart/cart.module').then( m => m.CartPageModule)
+    path: 'gestion-commande',
+    loadChildren: () => import('./layout/pages_admin/gestion-commande/gestion-commande.module').then( m => m.GestionCommandePageModule)
   },
 
-  
+
 ];
 
 @NgModule({

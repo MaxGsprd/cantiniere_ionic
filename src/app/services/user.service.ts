@@ -21,8 +21,13 @@ export class UserService {
     };
   }
 
+  
   async getAllUser(): Promise<any>{
     return this.http.get<User>(this.api_url+'user/findall', this.httpOptions).toPromise();
+  }
+
+  async getUserById(id:number): Promise<any> {
+    return this.http.get<any>(this.api_url + 'user/find/'+id, this.httpOptions).toPromise();
   }
 
   async getImgUser(id_user: number): Promise<any> {
@@ -38,8 +43,8 @@ export class UserService {
     return this.http.put<any>(this.api_url+'user/register', JSON.stringify(data), {headers: {'Content-Type':  'application/json'}});
   }
 
-  async getUserById(id:number): Promise<any> {
-    return this.http.get<any>(this.api_url + 'user/find/'+id, this.httpOptions).toPromise();
+  async updateImage(obj: any, id: number): Promise<any> {
+    return this.http.patch<any>(this.api_url+'user/updateimg/'+id, obj, this.httpOptions).toPromise();
   }
   
 }
