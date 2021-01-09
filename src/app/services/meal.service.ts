@@ -1,5 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { TokenStorageService } from './token-storage.service';
 
 const API_ROOT = 'http://localhost:8080/lunchtime/meal/';
@@ -8,8 +8,8 @@ const API_ROOT = 'http://localhost:8080/lunchtime/meal/';
   providedIn: 'root'
 })
 export class MealService {
-
-  httpOptions : any;
+  
+  httpOptions : any
 
   constructor(private http:HttpClient, private token_service: TokenStorageService) { 
     this.httpOptions = {
@@ -36,4 +36,7 @@ export class MealService {
     return this.http.patch<any>(API_ROOT + 'update/'+id, obj, this.httpOptions).toPromise();
   }
   
+  async updateMealImage(id: number, obj:any): Promise<any> {
+    return this.http.patch<any>(API_ROOT + 'updateimg/'+id, obj, this.httpOptions).toPromise();
+  }
 }

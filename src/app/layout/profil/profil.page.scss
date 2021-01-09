@@ -1,3 +1,16 @@
+ion-card {
+    text-align: center;
+}
+
+.centeredGrid {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+}
+.centeredRow {
+    justify-content: center;
+}
+
 ion-label {
     font-weight: bold;
     color: #333;

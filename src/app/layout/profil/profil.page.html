@@ -9,32 +9,64 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>Mon profil</ion-card-title>
-      <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
-      <img [src]="currentUser.image64"/>
+    <ion-card-header class="profilHeader">
+      <ion-card-title >Mon profil</ion-card-title>
+      <ion-grid class="centeredGrid">
+        <ion-row class='centeredRow'>
+          <ion-col class="imgCol" size='6'>
+            <img class="profilImg" [src]="currentUser.image64"/>
+          </ion-col>
+        </ion-row>
+        <ion-row class='centeredRow'>
+          <ion-col size='12'>
+            <ion-button size="small" color="danger" type="button">changer l'image</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-header>
     <ion-card-content>
     <form [formGroup]="userForm">
         <ion-grid>
           <ion-row>
             <ion-col size='6'>
-              <ion-label position="floating" for="name">Nom</ion-label>
+              <ion-label position="floating">Nom</ion-label>
               <ion-input type="text" formControlName="name" [readonly]="readonly"></ion-input>
             </ion-col>
             <ion-col size='6'>
-              <ion-label position="floating" for="name">Prénom</ion-label>
+              <ion-label position="floating">Prénom</ion-label>
               <ion-input  type="text" formControlName="firstname" [readonly]="readonly"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size='6'>
-              <ion-label position="floating" for="name">E-mail</ion-label>
+              <ion-label position="floating">E-mail</ion-label>
               <ion-input n type="text" formControlName="email" [readonly]="readonly"></ion-input>
             </ion-col>
             <ion-col size='6'>
-              <ion-label position="floating" for="name">Téléphone</ion-label>
+              <ion-label position="floating">Téléphone</ion-label>
               <ion-input  type="text" formControlName="phone" [readonly]="readonly"></ion-input>
+            </ion-col>
+            <ion-col size='6'>
+              <ion-label position="floating">Adresse</ion-label>
+              <ion-input  type="text" formControlName="address" [readonly]="readonly"></ion-input>
+            </ion-col>
+            <ion-col size='6'>
+              <ion-label position="floating">Code Postal</ion-label>
+              <ion-input  type="text" formControlName="postalCode" [readonly]="readonly"></ion-input>
+            </ion-col>
+            <ion-col size='6'>
+              <ion-label position="floating">Ville</ion-label>
+              <ion-input  type="text" formControlName="town" [readonly]="readonly"></ion-input>
+            </ion-col>
+            <ion-col size='6'>
+              <ion-label position="floating">Porte-monnaie</ion-label>
+              <ion-input  type="text" formControlName="wallet" readonly></ion-input>
+            </ion-col>
+            <ion-col size='6'>
+              <ion-label position="floating">Mot de passe</ion-label>
+              <ion-input  type="text" formControlName="password" readonly></ion-input>
+            </ion-col>
+            <ion-col size='6'>
             </ion-col>
           </ion-row>
         </ion-grid>
