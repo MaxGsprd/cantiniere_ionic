@@ -32,6 +32,11 @@ const routes: Routes = [
     loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
   },
   {
+    path: 'profil/:idUser',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
+  },
+  {
     path: 'forgotpassword',
     loadChildren: () => import('./layout/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },
@@ -48,13 +53,14 @@ const routes: Routes = [
     loadChildren: () => import('./layout/cart/cart.module').then( m => m.CartPageModule)
   },
   {
-    path: '**',
-    redirectTo: 'home',
-  },  {
     path: 'gestion-commande',
     loadChildren: () => import('./layout/pages_admin/gestion-commande/gestion-commande.module').then( m => m.GestionCommandePageModule)
   },
-
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
+  
 
 ];
 

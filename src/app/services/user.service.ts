@@ -43,8 +43,8 @@ export class UserService {
     return this.http.put<any>(this.api_url+'user/register', JSON.stringify(data), {headers: {'Content-Type':  'application/json'}});
   }
 
-  async updateImage(obj: any, id: number): Promise<any> {
-    return this.http.patch<any>(this.api_url+'user/updateimg/'+id, obj, this.httpOptions).toPromise();
-  }
+  // async updateImage(obj: any, id: number): Promise<any> {
+  //   return this.http.patch<any>(this.api_url+'user/updateimg/'+id, obj, this.httpOptions).toPromise();
+  // }
   
 }

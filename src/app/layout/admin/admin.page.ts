@@ -28,23 +28,21 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   ],
 })
 export class AdminPage implements OnInit {
+  userId: any;
+
   commandes_passees: Commande[] = [];
   expandedElement: User | null;
   todayOrders: Commande[] = [];
-  dataSourceToday = new MatTableDataSource<Commande>(this.todayOrders);
   users: User[] = [];
-  userId: any;
   displayedColumns2: string[] = ['id', 'idUser', 'firstName', 'name', 'creationDate', 'creationTime', 'status', 'action'];
+
+  dataSourceToday = new MatTableDataSource<Commande>(this.todayOrders);
   dataSource2 = new MatTableDataSource<Commande>(this.commandes_passees);
-
   //Variable Max
-
   usersTab: User[] = [];
   displayedColumns: string[] = ['name', 'firstname', 'wallet', 'id'];
   dataSource = new MatTableDataSource<User>(this.usersTab);
-
   //Variable Rélesse
-
   menus = [];
   meals = [];
   panelOpenState = false;
@@ -128,7 +126,6 @@ export class AdminPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsers();
     this.getAllMenus();
     this.getAllMeals();
   }
@@ -143,70 +140,6 @@ export class AdminPage implements OnInit {
       this.dataSource.filter = filterValue;
     }
     
-  }
-
-  /**
-   * Code de Max
-   */
-
-  // get users list
-  async getUsers() {
-    const response = await this.userService.getAllUser();
-    this.usersTab = response;
-    this.usersTab = this.sortUsersByName(this.usersTab);
-
-  }
-
-  // function that orders users alphabetically by name
-  sortUsersByName(users :User[])  {
-    let sortedUsers = users.sort((a,b) => {
-      if( a.name.toLowerCase() < b.name.toLowerCase()) {
-        return - 1;
-      }
-      if( a.name.toLowerCase() > b.name.toLowerCase()) {
-        return - 0;
-     }
-     return 0;
-     })
-     return sortedUsers;
-  }
-
-  creditUser(id: number) {
-    //open dialog-box-credit
-    let dialogRef = this.dialog.open(DialogBoxCreditComponent, {data: {userId: id}})
-
-    //callback func. on dialog-box closing
-    dialogRef.afterClosed().subscribe( creditAmount => {
-      
-      // credit amount check
-      parseInt(creditAmount);
-      if (isNaN(creditAmount) || creditAmount <= 0) {
-        alert('veuillez entrer un montant valide');
-      } else {
-
-        // call walletService to credit the user and reload
-        this.walletService.creditUser(id, creditAmount).subscribe( (res) => {
-        window.alert(`${res.name} ${res.firstname} a été crédité de : ${creditAmount}€`);
-        window.location.reload();
-        })
-      }
-    })
-  }
-
-  //callback function to debit user on dialogbox interaction (function detail similar to  creditUser() )
-  debitUser(id: number) {
-    let dialogRef = this.dialog.open(DialogBoxDebitComponent, {data: {userId: id}})
-    dialogRef.afterClosed().subscribe( debitAmount => {
-      parseInt(debitAmount);
-      if (isNaN(debitAmount) || debitAmount <= 0) {
-        alert('veuillez entrer un montant valide');
-      } else {
-        this.walletService.debitUser(id, debitAmount).subscribe( (res) => {
-        window.alert(`${res.name} ${res.firstname} a été débité de : ${debitAmount}€`);
-        window.location.reload();
-        })
-      }
-    })
   }
 
   async getAllMenus() {
@@ -229,7 +162,6 @@ export class AdminPage implements OnInit {
         element.img = response.image64;
       }
     });
-    
   }
 
   async getImageMeal(id_meal: number) {

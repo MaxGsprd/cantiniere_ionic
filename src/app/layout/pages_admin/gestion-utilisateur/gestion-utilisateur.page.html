@@ -8,5 +8,57 @@
 </ion-header>
 
 <ion-content>
+  <div class="user-table">
+  <div class="searchSection">
+    <span>Filtrer les commandes par utilisateur</span>
+    <form>
+        <input class="searchInput" matInput (keyup)="applyFilter($event.target.value)" placeholder="Nom ou prénom">
+    </form>
+  </div>
+  <ion-card>
+  <table mat-table multiTemplateDataRows [dataSource]="dataSource" class="mat-elevation-z8">
 
+      <ion-item matColumnDef="name">
+        <th  mat-header-cell *matHeaderCellDef>Nom</th>
+        <td  mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ion-item>
+
+      <ion-item matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef>Prenom</th>
+        <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+      </ion-item>
+
+      <ion-item matColumnDef="wallet">
+        <th mat-header-cell *matHeaderCellDef>Porte-monnaie</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.wallet | number:'2.2'}}€
+        </td>
+      </ion-item>
+
+      <ion-item matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <span class="hidden">{{element.id}}</span>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <button mat-button class='btn credit' (click)="creditUser(element.id)">Créditer</button>
+              </ion-col>
+              <ion-col>
+                <button mat-button class='btn debit' (click)="debitUser(element.id)">Débiter</button>
+              </ion-col>
+              <ion-col>
+                <button class='btn seeProfile' mat-button (click)="voirProfil(element.id)">Voir profil</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </td>
+      </ion-item>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+    </table>
+  </ion-card>
+  </div>
 </ion-content>

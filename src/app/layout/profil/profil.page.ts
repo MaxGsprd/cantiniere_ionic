@@ -23,7 +23,11 @@ export class ProfilPage implements OnInit {
   commandes: Commande[] = [];
   panelOpenState = false;
 
-  constructor(private fb: FormBuilder, private order_service: OrderService, private user_service: UserService, private route: ActivatedRoute, private router: Router, private token_service: TokenStorageService) { 
+  constructor(private fb: FormBuilder, 
+    private order_service: OrderService, 
+    private user_service: UserService, 
+    private route: ActivatedRoute, private router: Router, 
+    private token_service: TokenStorageService) { 
     this.id_user =+ this.route.snapshot.paramMap.get('idUser');
   }
 
@@ -132,22 +136,22 @@ export class ProfilPage implements OnInit {
     this.changeImage = true
   }
 
-  async modifierImage() {
-    var obj = {
-      imagePath: this.imagePath,
-      image64: "data:image/jpeg;base64,"+this.img64
-    }
-    console.log(obj);
+  // async modifierImage() {
+  //   var obj = {
+  //     imagePath: this.imagePath,
+  //     image64: "data:image/jpeg;base64,"+this.img64
+  //   }
+  //   console.log(obj);
 
-    return this.user_service.updateImage(JSON.stringify(obj), this.id_user)
-    .then(res => {
-      console.log("res", res);
-    })
-    .catch(err => {
-      console.log("err", err);
-    })
+  //   return this.user_service.updateImage(JSON.stringify(obj), this.id_user)
+  //   .then(res => {
+  //     console.log("res", res);
+  //   })
+  //   .catch(err => {
+  //     console.log("err", err);
+  //   })
 
-  }
+  // }
 
   annulerImage() {
     this.changeImage = false;
