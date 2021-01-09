@@ -19,7 +19,6 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminPage,
     canActivate: [AuthGuard],
     data: { lunchLadyRole: true } ,
     loadChildren: () => import('./layout/admin/admin.module').then( m => m.AdminPageModule)
@@ -45,14 +44,18 @@ const routes: Routes = [
     loadChildren: () => import('./layout/detail-meal/detail-meal.module').then( m => m.DetailMealPageModule)
   },
   {
-    path: '**',
-    redirectTo: 'home',
-  },  {
     path: 'cart',
     loadChildren: () => import('./layout/cart/cart.module').then( m => m.CartPageModule)
   },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },  {
+    path: 'gestion-commande',
+    loadChildren: () => import('./layout/pages_admin/gestion-commande/gestion-commande.module').then( m => m.GestionCommandePageModule)
+  },
 
-  
+
 ];
 
 @NgModule({

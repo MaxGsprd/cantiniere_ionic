@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<!--<ion-header class="ion-no-border">
   <ion-toolbar color='danger'>
     <ion-title slot='start' size='large'>Administration</ion-title>
     <ion-buttons slot="end">
@@ -8,4 +8,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-</ion-content>
+
+</ion-content>-->
+
+<ion-tabs>
+  <ion-tab-bar>
+    <ion-tab-button tab="gestion-commande">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Commandes</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="gestion-utilisateur">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Utilisateurs</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="gestion-menu">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Menus</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="gestion-meal">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Meals</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
