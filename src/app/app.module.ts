@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,18 +24,24 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
+import { DialogBoxCreditComponent } from './component/dialog-box-credit/dialog-box-credit.component';
+import { DialogBoxDebitComponent } from './component/dialog-box-debit/dialog-box-debit.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,ConfirmDialogComponent,
+    DialogBoxCreditComponent,
+    DialogBoxDebitComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,

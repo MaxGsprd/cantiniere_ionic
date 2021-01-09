@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './helpers/auth.guard';
-import {AdminPage} from 'src/app/layout/admin/admin.page';
+import { AdminPage } from 'src/app/layout/admin/admin.page';
 
 const routes: Routes = [
   {
@@ -32,11 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
   },
   {
-    path: 'profil/:idUser',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
-  },
-  {
     path: 'forgotpassword',
     loadChildren: () => import('./layout/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },
@@ -60,8 +55,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'home',
   },
-  
-
 ];
 
 @NgModule({

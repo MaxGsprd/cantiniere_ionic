@@ -13,7 +13,8 @@ import { DialogBoxDebitComponent } from 'src/app/component/dialog-box-debit/dial
 import { CantiniereService } from 'src/app/services/cantiniere.service';
 import { MealService } from 'src/app/services/meal.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -34,7 +35,13 @@ export class AdminPage implements OnInit {
   expandedElement: User | null;
   todayOrders: Commande[] = [];
   users: User[] = [];
+<<<<<<< HEAD
   displayedColumns2: string[] = ['id', 'idUser', 'firstName', 'name', 'creationDate', 'creationTime', 'status', 'action'];
+=======
+  userId: any;
+  //displayedColumns2: string[] = ['id', 'idUser', 'firstName', 'name', 'creationDate', 'creationTime', 'status', 'action'];
+  //dataSource2 = new MatTableDataSource<Commande>(this.commandes_passees);
+>>>>>>> d0e99087be43b4d5be462dc1e155d17a35035a12
 
   dataSourceToday = new MatTableDataSource<Commande>(this.todayOrders);
   dataSource2 = new MatTableDataSource<Commande>(this.commandes_passees);
@@ -65,7 +72,7 @@ export class AdminPage implements OnInit {
     this.userId = this.route.snapshot.paramMap.get('id');
     this.order_service.findAll().subscribe((data) => {
       this.commandes_passees = data;
-      this.dataSource2.data = this.commandes_passees;
+      //this.dataSource2.data = this.commandes_passees;
       console.log('commandes passées :',this.commandes_passees);
     });
     this.order_service.findTodayOrders().subscribe(data => {
@@ -74,13 +81,13 @@ export class AdminPage implements OnInit {
       console.log('commandes du jour :',this.todayOrders);
     })
 
-    this.dataSource2.filterPredicate = function(data, filter:string):boolean {
-      var str1 = data.user.firstname.toLowerCase();
-      var str2 = data.user.name.toLowerCase();
-      var str3 = str1.concat(" ", str2);
-      var str4 = str2.concat(" ", str1);
-      return str1.includes(filter) || str2.includes(filter) || str3.includes(filter) || str4.includes(filter);
-    }
+    //this.dataSource2.filterPredicate = function(data, filter:string):boolean {
+    //  var str1 = data.user.firstname.toLowerCase();
+    //  var str2 = data.user.name.toLowerCase();
+    //  var str3 = str1.concat(" ", str2);
+    //  var str4 = str2.concat(" ", str1);
+    //  return str1.includes(filter) || str2.includes(filter) || str3.includes(filter) || str4.includes(filter);
+    //}
 
     this.dataSource.filterPredicate = function(data, filter:string):boolean {
       var str1 = data.firstname.toLowerCase();
@@ -135,8 +142,8 @@ export class AdminPage implements OnInit {
       filterValue = filterValue.trim();
       filterValue = filterValue.toLowerCase();
       this.dataSource.data = this.usersTab;
-      this.dataSource2.data = this.commandes_passees;
-      this.dataSource2.filter = filterValue;
+      //this.dataSource2.data = this.commandes_passees;
+      //this.dataSource2.filter = filterValue;
       this.dataSource.filter = filterValue;
     }
     
