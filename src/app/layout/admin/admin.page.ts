@@ -35,13 +35,9 @@ export class AdminPage implements OnInit {
   expandedElement: User | null;
   todayOrders: Commande[] = [];
   users: User[] = [];
-<<<<<<< HEAD
-  displayedColumns2: string[] = ['id', 'idUser', 'firstName', 'name', 'creationDate', 'creationTime', 'status', 'action'];
-=======
   userId: any;
   //displayedColumns2: string[] = ['id', 'idUser', 'firstName', 'name', 'creationDate', 'creationTime', 'status', 'action'];
   //dataSource2 = new MatTableDataSource<Commande>(this.commandes_passees);
->>>>>>> d0e99087be43b4d5be462dc1e155d17a35035a12
 
   dataSourceToday = new MatTableDataSource<Commande>(this.todayOrders);
   dataSource2 = new MatTableDataSource<Commande>(this.commandes_passees);
