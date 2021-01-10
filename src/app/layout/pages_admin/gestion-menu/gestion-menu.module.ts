@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { GestionMenuPageRoutingModule } from './gestion-menu-routing.module';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { GestionMenuPage } from './gestion-menu.page';
 
 @NgModule({
@@ -13,7 +15,8 @@ import { GestionMenuPage } from './gestion-menu.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    GestionMenuPageRoutingModule
+    GestionMenuPageRoutingModule,
+    MatExpansionModule,
   ],
   declarations: [GestionMenuPage]
 })

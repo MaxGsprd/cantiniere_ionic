@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CantiniereService } from 'src/app/services/cantiniere.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
+import { CartPage } from '../cart/cart.page';
 
 @Component({
   selector: 'app-detail-meal',
   templateUrl: './detail-meal.page.html',
   styleUrls: ['./detail-meal.page.scss'],
+  providers: [CartPage]
 })
 export class DetailMealPage implements OnInit {
 
@@ -16,7 +18,7 @@ export class DetailMealPage implements OnInit {
   quantity = 0;
   igrdBool = false;
 
-  constructor(private route: ActivatedRoute, private cantiniere_service: CantiniereService, private igrd_service: IngredientService) { }
+  constructor(private route: ActivatedRoute, private cantiniere_service: CantiniereService, private igrd_service: IngredientService, private cart: CartPage) { }
 
   ngOnInit() {
     //console.log(this.route.snapshot.paramMap)
@@ -59,6 +61,16 @@ export class DetailMealPage implements OnInit {
 
   changeQuantity(quantity) {
     if(quantity >= 0) this.quantity = quantity;
+  }
+
+  addToCart() {
+    console.log(this.meal)
+    const orderMeal = {
+      quantity: this.quantity,
+      menuId: null,
+      mealId: this.mealId
+    }
+    this.cart.addToCart(orderMeal)
   }
 
 }

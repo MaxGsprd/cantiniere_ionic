@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { GestionMealPageRoutingModule } from './gestion-meal-routing.module';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { GestionMealPage } from './gestion-meal.page';
 
 @NgModule({
@@ -13,7 +15,9 @@ import { GestionMealPage } from './gestion-meal.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    GestionMealPageRoutingModule
+    GestionMealPageRoutingModule,
+    MatExpansionModule
+
   ],
   declarations: [GestionMealPage]
 })

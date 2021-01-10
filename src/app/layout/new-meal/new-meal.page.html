@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color='danger'>
+    <ion-title slot='start' size='large'>New Meals</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="admin/gestion-meal" text='retour'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Veuillez entrer un nouveau meal</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="mealForm">
+        <div formGroupName="image">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <input class="form-control" type="file" formControlName="imagePath" (change)="handleFileSelect($event)" placeholder="choisir image">
+              </ion-col>
+              <ion-col>
+                <div *ngIf="img64">
+                  <ion-thumbnail slot="start" class="image">
+                    <ion-img src="data:image/jpeg;base64,{{img64}}"></ion-img>
+                  </ion-thumbnail>
+                </div> 
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <ion-item>
+          <ion-label position="stacked">label</ion-label>
+          <ion-input formControlName="label"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">description</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">priceDF</ion-label>
+          <ion-input type="number" formControlName="priceDF"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">category</ion-label>
+          <ion-input type="number" formControlName="category"></ion-input>
+        </ion-item>
+        <ion-item>
+          <div class="div1">
+            <ion-button color="primary" class="btn" (click)="addWeeks()">add weeks</ion-button>
+            <br/>
+            <div class="div2" *ngFor="let control of weeks.controls; index as i">
+              <ion-button color="danger" (click)="removeWeeks(i)">X</ion-button>
+              <ion-label position="stacked">Weeks</ion-label>
+              <ion-input matInput type="number" [formControl]="weeks.controls[i]"></ion-input>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item>
+          <div class="div1">
+            <ion-button color="primary" class="btn" (click)="addIgrds()">add igrds</ion-button>
+            <br/>
+            <div class="div2" *ngFor="let control of idIgrds.controls; index as i">
+              <ion-item style="width: 250px;">
+                <ion-button color="danger" (click)="removeIgrds(i)">X</ion-button>
+                <ion-label position="stacked">ingredient</ion-label>
+                <ion-select [formControl]="idIgrds.controls[i]">
+                  <ion-select-option *ngFor="let igrd of igrds" [value]="igrd.id">{{igrd.label}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </div>
+        </ion-item>
+      </form>
+      <ion-button color="danger" (click)="createMeal()" style="float: right;">Valider</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color='danger'>
+    <ion-title slot='start' size='large'>New ingredients</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="admin/gestion-meal" text='retour'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Veuillez entrer un nouveau ingredient</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="createIgrd()" [formGroup]="igrdForm">
+        <div formGroupName="image">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <input class="form-control" type="file" formControlName="imagePath" (change)="handleFileSelect($event)" placeholder="choisir image">
+              </ion-col>
+              <ion-col>
+                <div *ngIf="img64">
+                  <ion-thumbnail slot="start" class="image">
+                    <ion-img src="data:image/jpeg;base64,{{img64}}"></ion-img>
+                  </ion-thumbnail>
+                </div> 
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <ion-item>
+          <ion-label position="stacked">label</ion-label>
+          <ion-input formControlName="label"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">description</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+        <ion-button color="danger" type="submit" style="float: right;">Valider</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

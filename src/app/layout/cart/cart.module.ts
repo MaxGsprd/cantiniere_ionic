@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { CartPageRoutingModule } from './cart-routing.module';
 
+import { MatTableModule } from '@angular/material/table';
+
 import { CartPage } from './cart.page';
 
 @NgModule({
@@ -13,7 +15,8 @@ import { CartPage } from './cart.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CartPageRoutingModule
+    CartPageRoutingModule,
+    MatTableModule
   ],
   declarations: [CartPage]
 })
