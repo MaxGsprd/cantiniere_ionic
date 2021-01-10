@@ -32,12 +32,12 @@ export class GestionCommandePage implements OnInit {
     this.order_service.findAll().subscribe((data) => {
       this.commandes_passees = data;
       this.dataSource2.data = this.commandes_passees;
-      console.log('commandes passées :',this.commandes_passees);
+      // console.log('commandes passées :',this.commandes_passees);
     });
     this.order_service.findTodayOrders().subscribe(data => {
       this.todayOrders = data
       this.dataSourceToday.data = this.todayOrders;
-      console.log('commandes du jour :',this.todayOrders);
+      // console.log('commandes du jour :',this.todayOrders);
     })
 
     this.dataSource2.filterPredicate = function(data, filter:string):boolean {
@@ -61,7 +61,7 @@ export class GestionCommandePage implements OnInit {
         this.order_service
           .cancel(id)
           .subscribe(() => window.location.reload());
-          console.log("Commande n°" + id + " annulée !");
+          // console.log("Commande n°" + id + " annulée !");
       }
     });
   }
@@ -78,7 +78,7 @@ export class GestionCommandePage implements OnInit {
         this.order_service
           .pay(id)
           .subscribe(() => window.location.reload());
-          console.log("Commande n°" + id + " validée et payée !");
+          // console.log("Commande n°" + id + " validée et payée !");
       }
     });
   }

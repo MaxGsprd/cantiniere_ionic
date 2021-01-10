@@ -36,6 +36,7 @@ import { DialogBoxDebitComponent } from './component/dialog-box-debit/dialog-box
   declarations: [AppComponent,ConfirmDialogComponent,
     DialogBoxCreditComponent,
     DialogBoxDebitComponent],
+    
   entryComponents: [],
   imports: [
     BrowserModule,

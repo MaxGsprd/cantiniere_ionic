@@ -26,17 +26,21 @@ export class ProfilPage implements OnInit {
   constructor(private fb: FormBuilder, 
     private order_service: OrderService, 
     private user_service: UserService, 
-    private route: ActivatedRoute, private router: Router, 
+    private route: ActivatedRoute, 
+    private router: Router, 
     private token_service: TokenStorageService) { 
-    this.id_user =+ this.route.snapshot.paramMap.get('idUser');
+        this.id_user =+ this.route.snapshot.paramMap.get('idUser'); 
   }
 
 
   ngOnInit(): void {
     let user
-    if(this.token_service.getUser()) user = this.token_service.getUser().user
+    if(this.token_service.getUser()) {
+      user = this.token_service.getUser().user 
+      this.id_user = user.id;
+    }
     if(user && !user.isLunchLady && user.id != this.id_user) {
-      window.location.replace("accueil");
+      window.location.replace("home");
     }
     this.getUserById(this.id_user);
     this.generateUserForm();
@@ -136,22 +140,22 @@ export class ProfilPage implements OnInit {
     this.changeImage = true
   }
 
-  // async modifierImage() {
-  //   var obj = {
-  //     imagePath: this.imagePath,
-  //     image64: "data:image/jpeg;base64,"+this.img64
-  //   }
-  //   console.log(obj);
+  async modifierImage() {
+    var obj = {
+      imagePath: this.imagePath,
+      image64: "data:image/jpeg;base64,"+this.img64
+    }
+    console.log(obj);
 
-  //   return this.user_service.updateImage(JSON.stringify(obj), this.id_user)
-  //   .then(res => {
-  //     console.log("res", res);
-  //   })
-  //   .catch(err => {
-  //     console.log("err", err);
-  //   })
+    return this.user_service.updateImage(JSON.stringify(obj), this.id_user)
+    .then(res => {
+      console.log("res", res);
+    })
+    .catch(err => {
+      console.log("err", err);
+    })
 
-  // }
+  }
 
   annulerImage() {
     this.changeImage = false;

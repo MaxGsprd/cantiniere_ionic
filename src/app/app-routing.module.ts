@@ -14,6 +14,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'accueil',
+    loadChildren: () => import('./layout/home/home.module').then( m => m.HomePageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./layout/login/login.module').then( m => m.LoginPageModule)
   },
@@ -33,7 +37,8 @@ const routes: Routes = [
   },
   {
     path: 'profil/:idUser',
-    loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
+    loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'forgotpassword',
