@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CantiniereService } from 'src/app/services/cantiniere.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { CartPage } from '../cart/cart.page';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail-meal',
@@ -18,7 +19,7 @@ export class DetailMealPage implements OnInit {
   quantity = 0;
   igrdBool = false;
 
-  constructor(private route: ActivatedRoute, private cantiniere_service: CantiniereService, private igrd_service: IngredientService, private cart: CartPage) { }
+  constructor(private route: ActivatedRoute, private cantiniere_service: CantiniereService, private igrd_service: IngredientService, private cart: CartPage, private alertCtrl:AlertController) { }
 
   ngOnInit() {
     //console.log(this.route.snapshot.paramMap)
@@ -70,7 +71,20 @@ export class DetailMealPage implements OnInit {
       menuId: null,
       mealId: this.mealId
     }
+    let menuLabel = this.meal.label;
     this.cart.addToCart(orderMeal)
+    this.showAlert(menuLabel);
   }
+
+  async showAlert(menuLabel:string) {  
+    const alert = await this.alertCtrl.create({  
+      header: 'Commande passée avec succès',  
+      subHeader: `votre commande de ${menuLabel} à été prise  en compte`,  
+      buttons: ['J\'ai compris']  
+    });  
+    await alert.present();  
+    await alert.onDidDismiss();  
+    window.location.reload(); 
+  } 
 
 }

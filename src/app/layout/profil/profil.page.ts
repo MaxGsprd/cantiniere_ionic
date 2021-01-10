@@ -148,14 +148,9 @@ export class ProfilPage implements OnInit {
       image64: "data:image/jpeg;base64,"+this.img64
     }
     console.log(obj);
-
+    this.showImgAlert();
     return this.user_service.updateImage(JSON.stringify(obj), this.id_user)
-    .then(res => {
-      console.log("res", res);
-    })
-    .catch(err => {
-      console.log("err", err);
-    })
+
   }
 
   annulerImage() {
@@ -189,4 +184,16 @@ export class ProfilPage implements OnInit {
     }
   }
 
-}
+    async showImgAlert() {  
+      const alert = await this.alertCtrl.create({  
+        header: 'Photo de profil modifiée avec succès',  
+        subHeader: "Votre profil a été mis à jour",  
+        buttons: ['J\'ai compris']  
+      });  
+      await alert.present();  
+      await alert.onDidDismiss();  
+      window.location.reload(); 
+    }  
+  }
+
+

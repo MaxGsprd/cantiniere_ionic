@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color='danger'>
-    <ion-title>Detail Meal</ion-title>
+    <ion-title>Détail repas</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="first"></ion-menu-button>
     </ion-buttons>
@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button  routerLink="/cart">cart</ion-button>
+  <ion-button  routerLink="/cart">Panier</ion-button>
   <ion-card>
     <ion-card-header>
       <ion-card-title>{{meal && meal.label}}</ion-card-title>
@@ -27,7 +27,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <h3><b>Ingredients</b></h3>
+      <h3><b>Ingrédients</b></h3>
       <div *ngIf="igrdBool">
         <ul>
           <li *ngFor="let ingredient of meal.ingredients">{{ingredient && ingredient.label}}</li>
@@ -44,23 +44,11 @@
           </ion-col>
           <ion-col>
             <div>
-              <ion-button color="danger" (click)="addToCart()">ADD TO CART</ion-button>   
+              <ion-button color="danger" (click)="addToCart()">Commander</ion-button>   
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
-      <!--<div class="action">
-        <div>
-            <ion-icon style="vertical-align:middle;cursor:pointer" (click)="changeQuantity(quantity-1)" name="chevron-down-outline"></ion-icon>
-            <span style="vertical-align:middle">{{ quantity }}</span>
-            <ion-icon style="vertical-align:middle;cursor:pointer" (click)="changeQuantity(quantity+1)" name="chevron-down-outline"></ion-icon>
-        </div>
-        <div>
-            <ion-button color="danger" (click)="addToCart()">ADD TO CART</ion-button>   
-        </div>
-    
-     
-    </div>-->
     </ion-card-content>
   </ion-card>
 
