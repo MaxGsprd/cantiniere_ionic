@@ -43,11 +43,7 @@
             <ion-row>
               <ion-col>
                 <button mat-button class='btn credit' (click)="creditUser(element.id)">Créditer</button>
-              </ion-col>
-              <ion-col>
                 <button *ngIf="element.wallet > 0" mat-button class='btn debit' (click)="debitUser(element.id)">Débiter</button>
-              </ion-col>
-              <ion-col>
                 <button class='btn seeProfile' mat-button (click)="voirProfil(element.id)">Voir profil</button>
               </ion-col>
             </ion-row>

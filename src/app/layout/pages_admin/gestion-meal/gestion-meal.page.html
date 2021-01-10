@@ -8,5 +8,42 @@
 </ion-header>
 
 <ion-content>
-
+  <br/>
+  <a routerLink="/new-meal"><ion-button color="danger">Add menu</ion-button></a>
+  <a routerLink="/new-ingredient"><ion-button color="danger">Add igrd</ion-button></a>
+  <ion-card *ngFor="let meal of meals">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="expansion_panel">
+              <img *ngIf="!changeImageMeal" src={{meal.img}} alt="menu img">
+              <img *ngIf="changeImageMeal" src="data:image/jpeg;base64,{{img64}}"/>
+              <mat-panel-description>
+                  {{meal.label}}
+              </mat-panel-description>
+          </mat-expansion-panel-header>
+          <ion-button color="danger" (click)="modifMeal(meal.id)">Modifier</ion-button>
+          <br/>
+          <div style="float: right;">
+              <input  *ngIf="!changeImageMeal" type="file" style="float: right;" (change)="handleFileSelect($event)"/>
+              <ion-button color="danger" *ngIf="changeImageMeal" mat-raised-button color="primary" type="button" (click)="modifierImage(meal.id)">modifier</ion-button>
+              <ion-button color="danger" *ngIf="changeImageMeal" mat-raised-button color="primary" type="button" (click)="annulerImage()">annuler</ion-button>
+          </div>
+          <br/>
+          <br/>
+          <div *ngFor="let igrd of meal.ingredients" class="meal">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <img [src]=igrd.img64 alt="igrd image"  />
+                </ion-col>
+                <ion-col>
+                  <p>{{igrd.label}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <br/>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ion-card>
 </ion-content>

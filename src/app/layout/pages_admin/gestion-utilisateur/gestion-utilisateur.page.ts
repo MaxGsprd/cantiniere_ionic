@@ -97,7 +97,7 @@ export class GestionUtilisateurPage implements OnInit {
         alert('veuillez entrer un montant valide');
       } else {
         this.walletService.debitUser(id, debitAmount).subscribe( (res) => {
-        this.creditAlert(`${res.name} ${res.firstname} a été débité de : ${debitAmount}€`);
+        this.debitAlert(`${res.name} ${res.firstname} a été débité de : ${debitAmount}€`);
         })
       }
     })

@@ -5,12 +5,12 @@ import { AdminPage } from 'src/app/layout/admin/admin.page';
 
 const routes: Routes = [
   {
-    path: '\home',
+    path: '\accueil',
     loadChildren: () => import('./layout/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/accueil',
     pathMatch: 'full'
   },
   {
@@ -57,13 +57,30 @@ const routes: Routes = [
     loadChildren: () => import('./layout/cart/cart.module').then( m => m.CartPageModule)
   },
   {
-    path: 'gestion-commande',
-    loadChildren: () => import('./layout/pages_admin/gestion-commande/gestion-commande.module').then( m => m.GestionCommandePageModule)
+    path: 'new-meal',
+    loadChildren: () => import('./layout/new-meal/new-meal.module').then( m => m.NewMealPageModule)
+  },
+  {
+    path: 'new-menu',
+    loadChildren: () => import('./layout/new-menu/new-menu.module').then( m => m.NewMenuPageModule)
+  },
+  {
+    path: 'new-ingredient',
+    loadChildren: () => import('./layout/new-ingredient/new-ingredient.module').then( m => m.NewIngredientPageModule)
+  },
+  {
+    path: 'modif-menu/:menuId',
+    loadChildren: () => import('./layout/modif-menu/modif-menu.module').then( m => m.ModifMenuPageModule)
+  },
+  {
+    path: 'modif-meal/:mealId',
+    loadChildren: () => import('./layout/modif-meal/modif-meal.module').then( m => m.ModifMealPageModule)
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'accueil',
   },
+  
 ];
 
 @NgModule({

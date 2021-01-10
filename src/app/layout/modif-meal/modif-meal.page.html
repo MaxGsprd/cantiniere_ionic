@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color='danger'>
+    <ion-title slot='start' size='large'>Modif meal</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="admin/gestion-meal" text='retour'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Veuillez modifier ce meal</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="mealForm">
+        <ion-item>
+          <ion-label position="stacked">label</ion-label>
+          <ion-input formControlName="label"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">description</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">priceDF</ion-label>
+          <ion-input type="number" formControlName="priceDF"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">category</ion-label>
+          <ion-input type="number" formControlName="category"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">weeks</ion-label>
+          <ion-textarea formControlName="availableForWeeks"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <div class="div1">
+            <div *ngIf="current_igrd">
+              <div *ngFor="let igrdid of current_igrd">
+                <ion-button color="danger" (click)="deleteCurrentIgrd(igrdid.id)">X</ion-button>
+                <ion-label position="stacked">Igrd</ion-label>
+                <ion-input type="text" [value]="igrdid.label"  [readonly]="true"></ion-input>
+              </div>
+            </div>
+            <ion-button color="primary" class="btn" (click)="addIgrds()">add igrds</ion-button>
+            <br/>
+            <div class="div2" *ngFor="let control of idIgrds.controls; index as i">
+              <ion-item style="width: 250px;">
+                <ion-button color="danger" (click)="removeIgrds(i)">X</ion-button>
+                <ion-label position="stacked">ingredient</ion-label>
+                <ion-select [formControl]="idIgrds.controls[i]">
+                  <ion-select-option *ngFor="let igrd of igrds" [value]="igrd.id">{{igrd.label}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </div>
+        </ion-item>
+      </form>
+      <ion-button color="danger" (click)="modifMeal()" style="float: right;">Valider</ion-button>
+    </ion-card-content>
+  </ion-card> 
+</ion-content>

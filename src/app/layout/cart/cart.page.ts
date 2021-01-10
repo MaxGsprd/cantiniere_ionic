@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CantiniereService } from 'src/app/services/cantiniere.service';
 import { MealService } from 'src/app/services/meal.service';
+import { OrderService } from 'src/app/services/order.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginSnackbarComponent } from 'src/app/component/login-snackbar/login-snackbar.component';
+import { WalletSnackbarComponent } from 'src/app/component/wallet-snackbar/wallet-snackbar.component';
 
 const EMPTY_CART = [];
 
@@ -21,10 +25,10 @@ export class CartPage implements OnInit {
   menus = [];
   quantity;
 
-  constructor(private mealService:MealService, private userService:UserService, private menuService:CantiniereService, private token_service:TokenStorageService) { 
+  constructor(private mealService:MealService, private userService:UserService, private menuService:CantiniereService, private orderService: OrderService, private token_service:TokenStorageService, private _snackBar: MatSnackBar) { 
     if (this.cart = {}) this.cart = EMPTY_CART;
     if (localStorage.getItem('cart')) this.cart = JSON.parse(localStorage.getItem('cart'));
-    this.fillCartTable();
+    this.fillCartTable()
     if (this.token_service.getUser()) this.getUserWallet();
   }
 
@@ -40,7 +44,7 @@ export class CartPage implements OnInit {
   }
 
   order() {
-    /*if (this.token_service.getUser()) {
+    if (this.token_service.getUser()) {
       if (this.userWallet < this.cartTotal) {
         this.openSnackBar('no money');
       } else {
@@ -53,7 +57,7 @@ export class CartPage implements OnInit {
       
     } else {
       this.openSnackBar('not log');
-    }*/
+    }
     
   }
 
@@ -82,12 +86,13 @@ export class CartPage implements OnInit {
 
   cartMenuLessQuantity(id) {
     //console.log(this.cart)
-    this.cart.forEach(row => {
-      if (row.menuId == id) {
+    for (let i = 0; i < this.cart.length; i++) {
+      const row = this.cart[i];
+      if (row.mealId == id) {
         row.quantity--;
         localStorage.setItem('cart', JSON.stringify(this.cart));
       }
-    })
+    }
 
     this.cartTable.forEach(row => {
       if (row.id == id) {
@@ -95,16 +100,19 @@ export class CartPage implements OnInit {
         row.quantity--;
       }
     })
-    
+
+    this.getTotalPrice()
   }
 
   cartMenuMoreQuantity(id) {
-    this.cart.forEach(row => {
-      if (row.menuId == id) {
+
+    for (let i = 0; i < this.cart.length; i++) {
+      const row = this.cart[i];
+      if (row.mealId == id) {
         row.quantity++;
         localStorage.setItem('cart', JSON.stringify(this.cart));
       }
-    })
+    }
 
     this.cartTable.forEach(row => {
       if (row.id == id) {
@@ -112,20 +120,24 @@ export class CartPage implements OnInit {
         row.quantity++;
       }
     })
+
+    this.getTotalPrice()
   }
 
   cartMenuDelete(id) {
-    let newCart = this.cart.filter(row => row.menuId != id) 
+    let newCart = this.cart.filter(row => row.mealId != id) 
     this.cart = newCart
 
     let newCartTable = this.cartTable.filter(row => row.id != id)
     this.cartTable = newCartTable;
 
     localStorage.setItem('cart', JSON.stringify(this.cart));
+
+    this.getTotalPrice()
   }
 
   openSnackBar(why) {
-    /*switch (why) {
+    switch (why) {
       case 'not log':
         this._snackBar.openFromComponent(LoginSnackbarComponent, {
           duration: 20000,
@@ -137,7 +149,7 @@ export class CartPage implements OnInit {
           duration: 20000,
         });
         break;
-    }*/
+    }
     
   }
 
@@ -155,6 +167,7 @@ export class CartPage implements OnInit {
   }
 
   getTotalPrice() {
+    this.cartTotal = 0;
     for (let index = 0; index < this.cart.length; index++) {
       const element = this.cart[index];
       this.getMeal(element.mealId).subscribe(meal => {
