@@ -71,13 +71,32 @@
               <ion-input  type="text" formControlName="password" [readonly]="readonly"></ion-input>
             </ion-col>
             <ion-col size='12'>
-              <ion-button mat-raised-button color="primary" *ngIf="readonly" type="button" (click)="readonlyOn()">Modifier</ion-button>
+              <ion-button mat-raised-button color="primary" *ngIf="readonly" type="button" (click)="readonlyOn()">Modifier mon profil</ion-button>
               <ion-button mat-raised-button *ngIf="!readonly" type="button" (click)="modificationProfile(currentUser.id)">Enregistrer</ion-button>
               <ion-button mat-raised-button color="danger" *ngIf="!readonly" type="button" (click)="readonlyOff()">Annuler</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf='!orderPanel'>
+            <ion-col size="12">
+              <ion-button color="light" (click)='displayOrders()'>Mes commandes</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
       </form>
     </ion-card-content>
+    <ion-card *ngIf='orderPanel' class="example-card">
+      <div *ngFor="let commande of commandes">
+        <ion-card-content>
+          <ul>
+            <li>
+              <ion-icon class='closeIcon' (click)='displayOrders()' name="close"></ion-icon>
+              <h3>Commande n°{{commande.id}}</h3>
+              <p>Commande {{(commande.status == 0 ? "créée" : commande.status == 1 ? "validée" : "annulée")}}</p>
+              <p>Effectuée le {{commande.creationDate | date:'dd/MM/yyyy'}} à {{commande.creationTime}}</p>
+            </li>
+          </ul>
+        </ion-card-content>
+      </div>
+    </ion-card>
   </ion-card>
 </ion-content>

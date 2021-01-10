@@ -52,7 +52,9 @@ export class CartPage implements OnInit {
           userId: this.token_service.getUser().user.id,
           constraintId: 1,
           quantity: this.cart
-        }).subscribe(data => console.log(data))
+        }).subscribe(
+          // data => console.log(data)
+          );
       }
       
     } else {
@@ -171,7 +173,7 @@ export class CartPage implements OnInit {
     for (let index = 0; index < this.cart.length; index++) {
       const element = this.cart[index];
       this.getMeal(element.mealId).subscribe(meal => {
-        console.log(meal)
+        // console.log(meal)
         this.cartTotal = this.cartTotal + meal["priceDF"] * element.quantity
       })
     }
