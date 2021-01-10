@@ -52,7 +52,7 @@ export class GestionUtilisateurPage implements OnInit {
     const response = await this.userService.getAllUser();
     this.usersTab = response;
     this.usersTab = this.sortUsersByName(this.usersTab);
-    console.log(response)
+    // console.log(response)
 
   }
 

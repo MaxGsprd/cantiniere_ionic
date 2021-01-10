@@ -24,7 +24,7 @@ export class OrderService {
   }
 
   addOrder(cart) {
-    console.log(cart)
+    // console.log(cart);
     return this.http.put(ORDER_ROOT + '/add', JSON.stringify(cart), this.httpOptions);
   }
 
@@ -38,7 +38,7 @@ export class OrderService {
 
   findTodayOrders(): Observable<any> {
     let today = formatDate(new Date(), 'yyyy-MM-dd', 'en')
-    console.log(today)
+    // console.log(today);
     return this.http.get<Commande[]>(ORDER_ROOT + '/findallbetweendateinstatus?status=0&beginDate='+today+'&endDate='+today, this.httpOptions)
   }
 
