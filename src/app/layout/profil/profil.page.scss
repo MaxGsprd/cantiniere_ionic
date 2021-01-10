@@ -11,6 +11,22 @@ ion-card {
     justify-content: center;
 }
 
+ion-input {
+    // border: solid 1px #CCC;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    padding: 0;
+    font-size: 0.9em;
+    margin: 10px 0;
+}
+.modifyImgBtn {
+    font-size: 0.8em;
+}
+
+img {
+    max-width: 50%;
+}
+
 ion-label {
     font-weight: bold;
     color: #333;

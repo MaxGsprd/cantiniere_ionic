@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color='danger'>
-    <ion-title slot='start' size='large'>Profil</ion-title>
+    <ion-title slot='start' size='large'>Mon profil</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="home" text='retour'></ion-back-button>
     </ion-buttons>
@@ -10,19 +10,15 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header class="profilHeader">
-      <ion-card-title >Mon profil</ion-card-title>
       <ion-grid class="centeredGrid">
         <ion-row class='centeredRow'>
           <ion-col class="imgCol" size='6'>
-            <!-- <img class="profilImg" [src]="currentUser.image64"/> -->
             <img *ngIf="!changeImage" [src]="currentUser && currentUser.image64"/>
             <img *ngIf="changeImage" src="data:image/jpeg;base64,{{img64}}"/>
+            <ion-button  size="small" class='modifyImgBtn' color="light" type="button">changer l'image</ion-button>
           </ion-col>
         </ion-row>
         <ion-row class='centeredRow'>
-          <ion-col size='12'>
-            <ion-button size="small" color="danger" type="button">changer l'image</ion-button>
-          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-header>
@@ -40,6 +36,10 @@
             </ion-col>
           </ion-row>
           <ion-row>
+            <ion-col size='6'>
+              <ion-label position="floating">Porte-monnaie</ion-label>
+              <ion-input  type="text" formControlName="wallet" readonly></ion-input>
+            </ion-col>
             <ion-col size='6'>
               <ion-label position="floating">E-mail</ion-label>
               <ion-input n type="text" formControlName="email" [readonly]="readonly"></ion-input>
@@ -60,43 +60,18 @@
               <ion-label position="floating">Ville</ion-label>
               <ion-input  type="text" formControlName="town" [readonly]="readonly"></ion-input>
             </ion-col>
-            <ion-col size='6'>
-              <ion-label position="floating">Porte-monnaie</ion-label>
-              <ion-input  type="text" formControlName="wallet" readonly></ion-input>
+            <ion-col size='12'>
+              <ion-label position="floating">Nouveau mot de passe</ion-label>
+              <ion-input  type="text" formControlName="password" [readonly]="readonly"></ion-input>
             </ion-col>
-            <ion-col size='6'>
-              <ion-label position="floating">Mot de passe</ion-label>
-              <ion-input  type="text" formControlName="password" readonly></ion-input>
-            </ion-col>
-            <ion-col size='6'>
+            <ion-col size='12'>
               <ion-button mat-raised-button color="primary" *ngIf="readonly" type="button" (click)="readonlyOn()">Modifier</ion-button>
-              <ion-button mat-raised-button color="danger" *ngIf="!readonly" type="button" (click)="readonlyOff()">Annuler</ion-button>
               <ion-button mat-raised-button *ngIf="!readonly" type="button" (click)="modificationProfile(currentUser.id)">Enregistrer</ion-button>
+              <ion-button mat-raised-button color="danger" *ngIf="!readonly" type="button" (click)="readonlyOff()">Annuler</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
       </form>
-      <!-- <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header class="expansion_panel">
-                <mat-panel-description>
-                    commande passées ({{commandes.length}})
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div *ngFor="let commande of commandes">
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <mat-card-title>Commande n°{{commande.id}}</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>Commande {{(commande.status == 0 ? "créée" : commande.status == 1 ? "validée" : "annulée")}}</p>
-                        <p>Effectuée le {{commande.creationDate | date:'dd/MM/yyyy'}} à {{commande.creationTime}}</p>
-                    </mat-card-content>
-                    <!--<button [disabled]="commande.status == 1" (click)="payOrder(commande.id)">Valider et payer commande</button><button [disabled]="commande.status == 2" (click)="cancelOrder(commande.id)">Annuler commande</button>-->
-                <!-- </mat-card>
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion> -->
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -31,15 +31,15 @@ export class UserService {
   }
 
   async getImgUser(id_user: number): Promise<any> {
-    //console.log(this.httpOptions);
     return this.http.get<any>(this.api_url+'user/findimg/'+id_user, this.httpOptions).toPromise();
   }
 
   updateProfile(idUser: number, userForm: any): Promise<any> {
     return this.http.patch<any>(this.api_url+'user/update/'+idUser, userForm, this.httpOptions).toPromise();
   }
+
   setInscription(data: any): Observable<any> {
-    console.log(data)
+    console.log(data);
     return this.http.put<any>(this.api_url+'user/register', JSON.stringify(data), {headers: {'Content-Type':  'application/json'}});
   }
 
