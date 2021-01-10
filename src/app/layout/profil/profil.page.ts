@@ -151,10 +151,11 @@ export class ProfilPage implements OnInit {
 
     return this.user_service.updateImage(JSON.stringify(obj), this.id_user)
     .then(res => {
-      console.log("res", res);
+//console.log("res", res);
+//window.location.reload();
     })
     .catch(err => {
-      console.log("err", err);
+//console.log("err", err);
     })
   }
 

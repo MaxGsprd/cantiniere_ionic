@@ -70,7 +70,8 @@ export class DetailMealPage implements OnInit {
       menuId: null,
       mealId: this.mealId
     }
-    this.cart.addToCart(orderMeal)
+    this.cart.addToCart(orderMeal);
+    window.location.assign('/cart');
   }
 
 }
