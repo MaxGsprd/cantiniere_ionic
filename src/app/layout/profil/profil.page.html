@@ -15,7 +15,10 @@
           <ion-col class="imgCol" size='6'>
             <img *ngIf="!changeImage" [src]="currentUser && currentUser.image64"/>
             <img *ngIf="changeImage" src="data:image/jpeg;base64,{{img64}}"/>
-            <ion-button  size="small" class='modifyImgBtn' color="light" type="button">changer l'image</ion-button>
+            <ion-button (click)="displayImgBtn()" size="small" class='modifyImgBtn' color="light" type="button">changer l'image</ion-button>
+          </ion-col>
+          <ion-col size="12">
+            <input *ngIf="chooseFileBtnClass" type="file" (change)="handleFileSelect($event)" placeholder="choisir image"/>
           </ion-col>
         </ion-row>
         <ion-row class='centeredRow'>

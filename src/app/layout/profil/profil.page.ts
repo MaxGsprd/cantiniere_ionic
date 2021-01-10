@@ -23,6 +23,7 @@ export class ProfilPage implements OnInit {
   userForm: FormGroup;
   commandes: Commande[] = [];
   panelOpenState = false;
+  chooseFileBtnClass = false;
 
   constructor(private fb: FormBuilder, 
     private order_service: OrderService, 
@@ -48,6 +49,8 @@ export class ProfilPage implements OnInit {
     this.generateUserForm();
     this.recapOrder(this.id_user);
   }
+
+
 
   async getUserById(id_user : number) {
     const response = await this.user_service.getUserById(id_user);
@@ -173,5 +176,12 @@ export class ProfilPage implements OnInit {
     window.location.reload(); 
   }  
 
+  displayImgBtn() {
+    if (this.chooseFileBtnClass === false) {
+      this.chooseFileBtnClass = true;
+    } else {
+      this.chooseFileBtnClass = false;
+    }
+  }
 
 }
