@@ -93,6 +93,8 @@ export class GestionCommandePage implements OnInit {
       filterValue = filterValue.toLowerCase();
       this.dataSource2.data = this.commandes_passees;
       this.dataSource2.filter = filterValue;
+    } else {
+      this.dataSource2.filter = '';
     }
     
   }
