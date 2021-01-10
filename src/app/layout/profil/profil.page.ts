@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
 import { Commande } from 'src/app/models/Commande';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { AlertController } from '@ionic/angular';  
 
 @Component({
   selector: 'app-profil',
@@ -22,22 +23,34 @@ export class ProfilPage implements OnInit {
   userForm: FormGroup;
   commandes: Commande[] = [];
   panelOpenState = false;
+  chooseFileBtnClass = false;
 
-  constructor(private fb: FormBuilder, private order_service: OrderService, private user_service: UserService, private route: ActivatedRoute, private router: Router, private token_service: TokenStorageService) { 
-    this.id_user =+ this.route.snapshot.paramMap.get('idUser');
+  constructor(private fb: FormBuilder, 
+    private order_service: OrderService, 
+    private user_service: UserService, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private token_service: TokenStorageService,
+    public alertCtrl: AlertController) { 
+        this.id_user =+ this.route.snapshot.paramMap.get('idUser'); 
   }
 
 
   ngOnInit(): void {
     let user
-    if(this.token_service.getUser()) user = this.token_service.getUser().user
+    if(this.token_service.getUser()) {
+      user = this.token_service.getUser().user 
+      this.id_user = user.id;
+    }
     if(user && !user.isLunchLady && user.id != this.id_user) {
-      window.location.replace("accueil");
+      window.location.replace("home");
     }
     this.getUserById(this.id_user);
     this.generateUserForm();
     this.recapOrder(this.id_user);
   }
+
+
 
   async getUserById(id_user : number) {
     const response = await this.user_service.getUserById(id_user);
@@ -69,20 +82,21 @@ export class ProfilPage implements OnInit {
   }
 
   patchValue() {
-    this.userForm.setValue({
-      name: [this.currentUser.name],
-      firstname: [this.currentUser.firstname],
-      email: [this.currentUser.email],
-      phone: [this.currentUser.phone],
-      address: [this.currentUser.address],
-      postalCode: [this.currentUser.postalCode],
-      town: [this.currentUser.town],
-      wallet: [this.currentUser.wallet],
-      password: [''],
-      sex: [this.currentUser.sex],
-      isLunchLady: [this.currentUser.isLunchLady],
+    this.userForm.patchValue({
+      name: this.currentUser.name,
+      firstname: this.currentUser.firstname,
+      email: this.currentUser.email,
+      phone: this.currentUser.phone,
+      address: this.currentUser.address,
+      postalCode: this.currentUser.postalCode,
+      town: this.currentUser.town,
+      wallet: this.currentUser.wallet,
+      password: "",
+      sex: this.currentUser.sex,
+      isLunchLady: this.currentUser.isLunchLady
     })
   }
+
 
   readonlyOn() {
     this.readonly = false;
@@ -98,9 +112,10 @@ export class ProfilPage implements OnInit {
     this.user_service.updateProfile(idUser, JSON.stringify(this.userForm.value))
     .then(res => {
       console.log('res', res)
+      this.showAlert();
     })
     .catch(err => {
-      console.log('err', err);
+      console.log('error modification', err);
     });
   }
 
@@ -119,9 +134,7 @@ export class ProfilPage implements OnInit {
 
     if (files && file) {
         var reader = new FileReader();
-
         reader.onload =this._handleReaderLoaded.bind(this);
-
         reader.readAsBinaryString(file);
     }
   }
@@ -146,12 +159,29 @@ export class ProfilPage implements OnInit {
     .catch(err => {
       console.log("err", err);
     })
-
   }
 
   annulerImage() {
     this.changeImage = false;
   }
 
+  async showAlert() {  
+    const alert = await this.alertCtrl.create({  
+      header: 'Profil modifié avec succès',  
+      subHeader: "Votre profil a été mis à jour",  
+      buttons: ['J\'ai compris']  
+    });  
+    await alert.present();  
+    await alert.onDidDismiss();  
+    window.location.reload(); 
+  }  
+
+  displayImgBtn() {
+    if (this.chooseFileBtnClass === false) {
+      this.chooseFileBtnClass = true;
+    } else {
+      this.chooseFileBtnClass = false;
+    }
+  }
 
 }

@@ -1,3 +1,8 @@
-<p>
-  dialog-box-debit works!
-</p>
+<h2 mat-dialog-title>Quel montant souhaitez vous débiter ?</h2>
+<mat-form-field>
+    <mat-label>montant en €</mat-label>
+    <input required matInput [(ngModel)]="debitAmount">
+</mat-form-field>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close mat-dialog-close='{{debitAmount}}'>Valider</button>
+</div>

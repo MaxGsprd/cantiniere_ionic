@@ -1,3 +1,8 @@
-<p>
-  dialog-box-credit works!
-</p>
+<h2 mat-dialog-title>Quel montant souhaitez vous créditer ?</h2>
+<mat-form-field>
+    <mat-label>montant en €</mat-label>
+    <input required matInput [(ngModel)]="creditAmount">
+</mat-form-field>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close mat-dialog-close='{{creditAmount}}'>Valider</button>
+</div>

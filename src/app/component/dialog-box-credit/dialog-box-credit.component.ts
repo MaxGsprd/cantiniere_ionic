@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dialog-box-credit.component.scss'],
 })
 export class DialogBoxCreditComponent implements OnInit {
+  creditAmount: string = "";  
 
-  constructor() { }
+ constructor(){ }
 
   ngOnInit() {}
+
 
 }
