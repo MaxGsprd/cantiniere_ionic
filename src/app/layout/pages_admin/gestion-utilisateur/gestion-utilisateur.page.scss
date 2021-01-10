@@ -20,7 +20,6 @@ ion-content {
     padding:10px;
 }
 
-
 .user-table {
     text-align: center;
 }
@@ -66,3 +65,27 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
     display: none;
 }
 
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+
+
+
+.filter {
+    position: sticky;
+    top: 0;
+}
+
+ion-card {
+    overflow-x:scroll;
+}
+
+.valider {
+    background-color: #5cb85c;
+}
+
+.annuler {
+    background-color: #d9534f;
+
+}

@@ -44,3 +44,21 @@ div[scrolly=true] {
     text-align: center;
     overflow-x: auto;
 }
+
+.btn {
+    padding: 7px 0;
+    width: 60px;
+    color: #fff;
+    font-size: 0.8em;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.valider {
+    background-color: #5cb85c;
+}
+
+.annuler {
+    background-color: #d9534f;
+
+}

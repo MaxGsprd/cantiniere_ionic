@@ -13,7 +13,7 @@ import { GestionUtilisateurPage } from './gestion-utilisateur.page';
     FormsModule,
     IonicModule,
     GestionUtilisateurPageRoutingModule,
-    MatTableModule
+    MatTableModule,
   ],
   declarations: [GestionUtilisateurPage]
 })

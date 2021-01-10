@@ -19,8 +19,7 @@
     </form>
   </div>
   <ion-card>
-  <table mat-table multiTemplateDataRows [dataSource]="dataSource" class="mat-elevation-z8">
-
+    <table mat-table multiTemplateDataRows [dataSource]="dataSource" class="mat-elevation-z8">
       <ion-item matColumnDef="name">
         <th  mat-header-cell *matHeaderCellDef>Nom</th>
         <td  mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -54,10 +53,81 @@
         </td>
       </ion-item>
 
+      <ion-item matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="example-element-detail"
+          [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+              <ion-item matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>N° Commande</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ion-item>
+
+              <ion-item matColumnDef="idUser">
+                <th mat-header-cell *matHeaderCellDef>N° Utilisateur</th>
+                <td mat-cell *matCellDef="let element"> {{element.user.id}} </td>
+              </ion-item>
+
+              <ion-item matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef>Prénom</th>
+                <td mat-cell *matCellDef="let element"> {{element.user.firstname}} </td>
+              </ion-item>
+
+              <ion-item matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Nom</th>
+                <td mat-cell *matCellDef="let element"> {{element.user.name}} </td>
+              </ion-item>
+
+              <ion-item matColumnDef="creationDate">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let element">
+                  {{element.creationDate | date:'dd/MM/yyyy'}}
+                </td>
+              </ion-item>
+
+              <ion-item matColumnDef="creationTime">
+                <th mat-header-cell *matHeaderCellDef>Heure</th>
+                <td mat-cell *matCellDef="let element">
+                  {{element.creationTime}}
+                </td>
+              </ion-item>
+
+              <ion-item matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Statut</th>
+                <td mat-cell *matCellDef="let element" [ngClass]="element.status == 1 ? 'greenStatus' : element.status == 2 ? 'redStatus' : ''">
+                  {{(element.status == 0 ? "Créée" : element.status == 1 ? "Validée" : "Annulée")}}
+                </td>
+              </ion-item>
+
+              <ion-item matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <button mat-button class='btn valider' [disabled]="element.status == 1" (click)="payOrder(element.id)">Valider</button>
+                          <button mat-button class='btn annuler' [disabled]="element.status == 2" (click)="cancelOrder(element.id)">Annuler</button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </td>
+                </ion-item>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+              </table>
+            </div>
+          </td>
+      </ion-item>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      
-    </table>
-  </ion-card>
-  </div>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      </table>
+    </ion-card>
+  </div>         
 </ion-content>

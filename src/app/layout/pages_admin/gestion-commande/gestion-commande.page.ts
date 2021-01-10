@@ -14,39 +14,21 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class GestionCommandePage implements OnInit {
 
-  commandes_passees: Commande[] = [];
-  expandedElement: User | null;
   todayOrders: Commande[] = [];
   dataSourceToday = new MatTableDataSource<Commande>(this.todayOrders);
-  users: User[] = [];
-  userId: any;
   displayedColumns2: string[] = ['id', 'idUser', 'firstName', 'name', 'creationDate', 'creationTime', 'status', 'action'];
-  dataSource2 = new MatTableDataSource<Commande>(this.commandes_passees);
 
-  constructor(
-    private order_service: OrderService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-  ) {
-    this.userId = this.route.snapshot.paramMap.get('id');
-    this.order_service.findAll().subscribe((data) => {
-      this.commandes_passees = data;
-      this.dataSource2.data = this.commandes_passees;
-      // console.log('commandes passées :',this.commandes_passees);
-    });
+  constructor(private order_service: OrderService, private dialog: MatDialog,) { }
+
+  ngOnInit(): void {
+    this.getTodayOrders();
+  }
+    
+  getTodayOrders(){
     this.order_service.findTodayOrders().subscribe(data => {
       this.todayOrders = data
-      this.dataSourceToday.data = this.todayOrders;
-      // console.log('commandes du jour :',this.todayOrders);
+      this.dataSourceToday.data = this.todayOrders
     })
-
-    this.dataSource2.filterPredicate = function(data, filter:string):boolean {
-      var str1 = data.user.firstname.toLowerCase();
-      var str2 = data.user.name.toLowerCase();
-      var str3 = str1.concat(" ", str2);
-      var str4 = str2.concat(" ", str1);
-      return str1.includes(filter) || str2.includes(filter) || str3.includes(filter) || str4.includes(filter);
-    }
   }
 
   cancelOrder(id: number) {
@@ -81,21 +63,5 @@ export class GestionCommandePage implements OnInit {
           // console.log("Commande n°" + id + " validée et payée !");
       }
     });
-  }
-
-  ngOnInit(): void {
-
-  }
-
-  applyFilter(filterValue: string) {
-    if(filterValue.length >= 3) {
-      filterValue = filterValue.trim();
-      filterValue = filterValue.toLowerCase();
-      this.dataSource2.data = this.commandes_passees;
-      this.dataSource2.filter = filterValue;
-    } else {
-      this.dataSource2.filter = '';
-    }
-    
   }
 }
