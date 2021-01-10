@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-box-credit',
@@ -9,11 +8,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogBoxCreditComponent implements OnInit {
   creditAmount: string = "";  
 
- constructor(
-  //  @Inject(MAT_DIALOG_DATA) public data:any
-   )
-    { }
+ constructor(){ }
 
   ngOnInit() {}
+
 
 }

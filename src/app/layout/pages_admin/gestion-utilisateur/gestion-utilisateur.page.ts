@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { DialogBoxCreditComponent } from 'src/app/component/dialog-box-credit/dialog-box-credit.component';
 import { DialogBoxDebitComponent } from 'src/app/component/dialog-box-debit/dialog-box-debit.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { AlertController } from '@ionic/angular';  
 
 @Component({
   selector: 'app-gestion-utilisateur',
@@ -33,6 +34,7 @@ export class GestionUtilisateurPage implements OnInit {
     private dialog: MatDialog,
     private walletService: WalletService,
     private userService: UserService,
+    public alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -52,7 +54,6 @@ export class GestionUtilisateurPage implements OnInit {
     const response = await this.userService.getAllUser();
     this.usersTab = response;
     this.usersTab = this.sortUsersByName(this.usersTab);
-    // console.log(response)
 
   }
 
@@ -72,20 +73,16 @@ export class GestionUtilisateurPage implements OnInit {
   creditUser(id: number) {
     //open dialog-box-credit
     let dialogRef = this.dialog.open(DialogBoxCreditComponent, {data: {userId: id}})
-
     //callback func. on dialog-box closing
     dialogRef.afterClosed().subscribe( creditAmount => {
-      
       // credit amount check
       parseInt(creditAmount);
       if (isNaN(creditAmount) || creditAmount <= 0) {
         alert('veuillez entrer un montant valide');
       } else {
-
         // call walletService to credit the user and reload
         this.walletService.creditUser(id, creditAmount).subscribe( (res) => {
-        window.alert(`${res.name} ${res.firstname} a été crédité de : ${creditAmount}€`);
-        window.location.reload();
+        this.creditAlert(`${res.name} ${res.firstname} a été crédité de : ${creditAmount}€`);
         })
       }
     })
@@ -100,8 +97,7 @@ export class GestionUtilisateurPage implements OnInit {
         alert('veuillez entrer un montant valide');
       } else {
         this.walletService.debitUser(id, debitAmount).subscribe( (res) => {
-        window.alert(`${res.name} ${res.firstname} a été débité de : ${debitAmount}€`);
-        window.location.reload();
+        this.creditAlert(`${res.name} ${res.firstname} a été débité de : ${debitAmount}€`);
         })
       }
     })
@@ -110,5 +106,27 @@ export class GestionUtilisateurPage implements OnInit {
   voirProfil(id_user) {
     this.router.navigateByUrl('profil/'+id_user);
   }
+  
+  async creditAlert(message:string) {  
+    const alert = await this.alertCtrl.create({  
+      header: 'Utilisateur crédité',  
+      subHeader: message,  
+      buttons: ['J\'ai compris']  
+    });  
+    await alert.present();  
+    await alert.onDidDismiss();  
+    window.location.reload();
+  }
+
+  async debitAlert(message:string) {  
+    const alert = await this.alertCtrl.create({  
+      header: 'Utilisateur débité',  
+      subHeader: message,  
+      buttons: ['J\'ai compris']  
+    });  
+    await alert.present();  
+    await alert.onDidDismiss();  
+    window.location.reload();
+  } 
 
 }

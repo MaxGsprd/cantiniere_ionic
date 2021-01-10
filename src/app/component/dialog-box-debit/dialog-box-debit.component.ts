@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogBoxDebitComponent implements OnInit {
 
+  debitAmount: string = "";  
+  
   constructor() { }
 
   ngOnInit() {}
