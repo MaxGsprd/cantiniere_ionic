@@ -1,3 +1,52 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="danger">
+        <ion-title *ngIf="isLogged">Bonjour {{currentUser.firstname}}</ion-title>
+        <ion-title *ngIf="!isLogged">Bienvenue</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <div *ngIf="!isLogged">
+            <ion-item routerLink="/login">
+              <ion-icon name="log-in-outline" slot="start"></ion-icon>
+              <ion-label>Login</ion-label>
+            </ion-item>
+          </div>
+          <div *ngIf="isLogged">
+            <ion-item routerLink="/profil">
+              <ion-icon name="person" slot="start"></ion-icon>
+              <ion-label>Profil</ion-label>
+            </ion-item>
+          </div>
+          <ion-item routerLink="/menus">
+            <ion-icon name="fast-food-outline" slot="start"></ion-icon>
+            <ion-label>Menus</ion-label>
+          </ion-item>
+          <div *ngIf="isLogged && isLunchLady">
+            <ion-item routerLink="admin">
+              <ion-icon name="storefront-outline" slot="start"></ion-icon>
+              <ion-label>Admin</ion-label>
+            </ion-item>
+          </div>
+          <ion-item routerLink="/cart">
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            <ion-label>Cart</ion-label>
+            <ion-badge color="primary">{{cart.cart.length}}</ion-badge>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-item *ngIf="isLogged">
+          <ion-buttons>
+            <ion-buttons color="light" (click)="logout()">
+              <ion-icon slot="start" name="log-in-outline"></ion-icon>
+              <ion-label>Déconnexion</ion-label>
+            </ion-buttons>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

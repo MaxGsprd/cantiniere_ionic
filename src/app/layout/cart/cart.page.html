@@ -1,7 +1,9 @@
-<<<<<<< HEAD
 <ion-header class="ion-no-border">
   <ion-toolbar color='danger'>
-    <ion-title slot='start' size='large'>Cart</ion-title>
+    <ion-title>Cart</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="menus" text='retour'></ion-back-button>
     </ion-buttons>
@@ -58,9 +60,5 @@
       <div *ngIf="cart.quantity == []">Votre panier est vide</div>
     </ion-card-content>
   </ion-card>
-=======
-<ion-content>
-panier
->>>>>>> f2826b1fc256d6d61a6ed534f78e040d985958bd
 </ion-content>
 

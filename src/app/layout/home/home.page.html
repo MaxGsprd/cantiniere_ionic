@@ -1,18 +1,21 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color='danger'>
-    <ion-title size='large'>Lunchlady</ion-title>
-    <ion-buttons *ngIf="isLogged" slot="end">
+    <ion-title>Lunchlady</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <!--<ion-buttons *ngIf="isLogged" slot="end">
       <ion-buttons color="light" (click)="logout()">
         me déconnecter
         <ion-icon slot="end" name="log-in-outline"></ion-icon>
       </ion-buttons>
-    </ion-buttons>
-    <ion-buttons *ngIf="!isLogged" slot="end">
+    </ion-buttons>-->
+    <!--<ion-buttons *ngIf="!isLogged" slot="end">
       <ion-buttons color="light" [routerLink]="['/login']">
         connexion
         <ion-icon slot="end" name="log-in-outline"></ion-icon>
       </ion-buttons>
-    </ion-buttons>
+    </ion-buttons>-->
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +24,7 @@
     <span class="welcomeMsg">Bonjour <span class="userName">{{currentUser.firstname}}</span>, bon appétit !</span>
   </ion-item>
   <ion-grid>
-    <ion-row>
+    <!--<ion-row>
       <ion-col size-md="6">
         <ion-card routerLink="/menus" color="danger" class="ion-text-center">
           <ion-card-header>
@@ -50,7 +53,7 @@
           </ion-card-header>
         </ion-card>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
     <ion-row>
       <ion-col *ngIf="!isLogged" class="ion-margin-top" size-md="6">
         <div id="container">
