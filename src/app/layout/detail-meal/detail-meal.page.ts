@@ -71,9 +71,8 @@ export class DetailMealPage implements OnInit {
       menuId: null,
       mealId: this.mealId
     }
-    let menuLabel = this.meal.label;
-    this.cart.addToCart(orderMeal)
-    this.showAlert(menuLabel);
+    this.cart.addToCart(orderMeal);
+    window.location.assign('/cart');
   }
 
   async showAlert(menuLabel:string) {  

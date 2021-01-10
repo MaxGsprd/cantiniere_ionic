@@ -150,7 +150,6 @@ export class ProfilPage implements OnInit {
     console.log(obj);
     this.showImgAlert();
     return this.user_service.updateImage(JSON.stringify(obj), this.id_user)
-
   }
 
   annulerImage() {

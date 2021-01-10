@@ -50,11 +50,12 @@ export class CartPage implements OnInit {
       } else {
         this.orderService.addOrder({
           userId: this.token_service.getUser().user.id,
-          constraintId: 1,
+          constraintId: -1,
           quantity: this.cart
-        }).subscribe(
+          }).subscribe(
           // data => console.log(data)
           );
+          window.location.assign('/accueil');
       }
       
     } else {
