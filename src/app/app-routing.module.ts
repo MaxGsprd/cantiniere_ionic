@@ -32,6 +32,10 @@ const routes: Routes = [
     loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
   },
   {
+    path: 'profil/:idUser',
+    loadChildren: () => import('./layout/profil/profil.module').then( m => m.ProfilPageModule)
+  },
+  {
     path: 'forgotpassword',
     loadChildren: () => import('./layout/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },
