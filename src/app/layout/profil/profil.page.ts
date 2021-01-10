@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
 import { Commande } from 'src/app/models/Commande';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { AlertController } from '@ionic/angular';  
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profil',
@@ -13,7 +13,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./profil.page.scss'],
 })
 export class ProfilPage implements OnInit {
-
+  test = [1,2,3];
   imagePath;
   changeImage = false;
   img64 : any;
@@ -24,12 +24,12 @@ export class ProfilPage implements OnInit {
   commandes: Commande[] = [];
   panelOpenState = false;
   chooseFileBtnClass = false;
+  orderPanel = false;
 
   constructor(private fb: FormBuilder, 
     private order_service: OrderService, 
     private user_service: UserService, 
     private route: ActivatedRoute, 
-    private router: Router, 
     private token_service: TokenStorageService,
     public alertCtrl: AlertController) { 
         this.id_user =+ this.route.snapshot.paramMap.get('idUser'); 
@@ -50,12 +50,10 @@ export class ProfilPage implements OnInit {
     this.recapOrder(this.id_user);
   }
 
-
-
   async getUserById(id_user : number) {
     const response = await this.user_service.getUserById(id_user);
     this.currentUser = response;
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
     this.getUserImg(id_user);
   }
 
@@ -96,7 +94,6 @@ export class ProfilPage implements OnInit {
       isLunchLady: this.currentUser.isLunchLady
     })
   }
-
 
   readonlyOn() {
     this.readonly = false;
@@ -181,6 +178,14 @@ export class ProfilPage implements OnInit {
       this.chooseFileBtnClass = true;
     } else {
       this.chooseFileBtnClass = false;
+    }
+  }
+
+  displayOrders() {
+    if (this.orderPanel === false) {
+      this.orderPanel = true;
+    } else {
+      this.orderPanel = false;
     }
   }
 

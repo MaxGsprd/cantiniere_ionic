@@ -1,25 +1,26 @@
 ion-card {
     text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .centeredGrid {
     display: flex;
     flex-direction: column;
-    // align-items: center;
 }
+
 .centeredRow {
     justify-content: center;
 }
 
 ion-input {
-    // border: solid 1px #CCC;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
     padding: 0;
     font-size: 0.9em;
     margin: 10px 0;
 }
-.modifyImgBtn {
+
+.modifyImgBtn , ion-button{
     font-size: 0.8em;
 }
 
@@ -34,4 +35,26 @@ img {
 ion-label {
     font-weight: bold;
     color: #333;
+}
+
+h3 {
+    color:#333;
+    padding-top:10px;
+    text-decoration: underline;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    text-align: left;
+}
+
+li {
+    border-bottom: solid 1px #CCC;
+}
+
+.closeIcon {
+    float:right;
 }
