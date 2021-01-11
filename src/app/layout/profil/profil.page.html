@@ -18,12 +18,16 @@
           <ion-col class="imgCol" size='6'>
             <img *ngIf="!changeImage" [src]="currentUser && currentUser.image64"/>
             <img *ngIf="changeImage" src="data:image/jpeg;base64,{{img64}}"/>
-              <ion-button (click)="displayImgBtn()" size="small" class='modifyImgBtn' color="light" type="button">changer l'image</ion-button>
-              <ion-button *ngIf="chooseFileBtnClass" color="primary" type="button" (click)="modifierImage()">enregistrer</ion-button>
-              <ion-button *ngIf="chooseFileBtnClass"  color="danger" type="button" (click)="annulerImage()">annuler</ion-button>
-            </ion-col>
-            <input class="chooseFile" *ngIf="chooseFileBtnClass" type="file" (change)="handleFileSelect($event)" placeholder="choisir image"/>
+          </ion-col>
           <ion-col size="12">
+            <ion-button (click)="displayImgBtn()" size="small" class='modifyImgBtn' color="light" type="button">changer l'image</ion-button>
+          </ion-col>
+          <ion-col size="12">
+            <ion-button class="floatLeft" *ngIf="chooseFileBtnClass" color="primary" type="button" (click)="modifierImage()">enregistrer</ion-button>
+            <ion-button class="floatRight" *ngIf="chooseFileBtnClass"  color="danger" type="button" (click)="annulerImage()">annuler</ion-button>
+          </ion-col>
+          <ion-col size="12">
+            <input class="chooseFile" *ngIf="chooseFileBtnClass" type="file" (change)="handleFileSelect($event)" placeholder="choisir image"/>
           </ion-col>
         </ion-row>
         <ion-row class='centeredRow'>
