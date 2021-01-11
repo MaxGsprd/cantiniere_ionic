@@ -72,7 +72,7 @@ export class DetailMealPage implements OnInit {
       mealId: this.mealId
     }
     this.cart.addToCart(orderMeal);
-    window.location.assign('/cart');
+    this.showAlert(this.meal.label);
   }
 
   async showAlert(menuLabel:string) {  
@@ -83,7 +83,7 @@ export class DetailMealPage implements OnInit {
     });  
     await alert.present();  
     await alert.onDidDismiss();  
-    window.location.reload(); 
+    window.location.assign('/cart'); 
   } 
 
 }

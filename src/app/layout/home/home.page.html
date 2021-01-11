@@ -24,40 +24,13 @@
     <span class="welcomeMsg">Bonjour <span class="userName">{{currentUser.firstname}}</span>, bon appétit !</span>
   </ion-item>
   <ion-grid>
-    <!--<ion-row>
-      <ion-col size-md="6">
-        <ion-card routerLink="/menus" color="danger" class="ion-text-center">
-          <ion-card-header>
-            <ion-icon class="icon" size="large" name="fast-food-outline"></ion-icon>
-            <ion-card-title>Menu</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngIf="isLogged" size-md="6">
-        <ion-card routerLink="/profil" color="danger" class="ion-text-center">
-          <ion-card-header>
-            <ion-icon class="icon" size="large" name="person"></ion-icon>
-            <ion-card-title>Profil</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>  
-    <ion-row>
-      <ion-col *ngIf="isLogged && isLunchLady" size-md="6">
-        <ion-card routerLink="/admin" color="danger" class="ion-text-center">
-          <ion-card-header>
-            <ion-icon class="icon" size="large" name="storefront-outline"></ion-icon>
-            <ion-card-title >Admin</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>-->
     <ion-row>
       <ion-col *ngIf="!isLogged" class="ion-margin-top" size-md="6">
         <div id="container">
-          <p>Bienvenue veuillez vous identifiez afin de pouvoir commander.</p>
+            <h1>Bienvenue sur Lunchlady</h1>
+            <p>
+             Ici vous pourrez commander des plats avant 10h30, pour créditer sa cagnotte veuillez contacter directement la cantinière
+            </p>
         </div>
       </ion-col>
     </ion-row> 

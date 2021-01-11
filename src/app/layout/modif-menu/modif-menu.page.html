@@ -26,11 +26,11 @@
           <ion-textarea formControlName="description"></ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">priceDF</ion-label>
+          <ion-label position="stacked">prix</ion-label>
           <ion-input type="number" formControlName="priceDF"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">weeks</ion-label>
+          <ion-label position="stacked">sem.</ion-label>
           <ion-textarea formControlName="availableForWeeks"></ion-textarea>
         </ion-item>
         <ion-item>
@@ -38,16 +38,16 @@
             <div *ngIf="current_meal">
               <div *ngFor="let mealid of current_meal">
                 <ion-button color="danger" (click)="deleteCurrentMeal(mealid.id)">X</ion-button>
-                <ion-label position="stacked">Meal</ion-label>
+                <ion-label position="stacked">Plat</ion-label>
                 <ion-input type="text" [value]="mealid.label"  [readonly]="true"></ion-input>
               </div>
             </div>
-            <ion-button color="primary" class="btn" (click)="addMeals()">add meals</ion-button>
+            <ion-button color="primary" class="btn" (click)="addMeals()">ajouter plat</ion-button>
             <br/>
             <div class="div2" *ngFor="let control of idMeals.controls; index as i">
               <ion-item style="width: 250px;">
                 <ion-button color="danger" (click)="removeMeals(i)">X</ion-button>
-                <ion-label position="stacked">meal</ion-label>
+                <ion-label position="stacked">plat</ion-label>
                 <ion-select [formControl]="idMeals.controls[i]">
                   <ion-select-option *ngFor="let meal of meals" [value]="meal.id">{{meal.label}}</ion-select-option>
                 </ion-select>

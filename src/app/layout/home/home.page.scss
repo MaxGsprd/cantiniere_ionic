@@ -8,6 +8,10 @@
   transform: translateY(-50%);
 }
 
+* {
+  color: #fff;
+}
+
 #container strong {
   font-size: 20px;
   line-height: 26px;
@@ -17,7 +21,7 @@
   font-size: 16px;
   line-height: 22px;
 
-  color: #8c8c8c;
+  color: #fff;
 
   margin: 0;
 }
@@ -59,9 +63,17 @@ ion-card-header {
   display: block;
   text-align: center;
   margin: auto;
-  color: #333;
+  color: #fff;
 }
 
 .userName {
   font-weight: bold;
+}
+
+ion-grid {
+  background-image: url("https://source.unsplash.com/1600x800/?food,meal");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  color:#fff;
 }

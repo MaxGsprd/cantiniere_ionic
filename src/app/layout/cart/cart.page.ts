@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginSnackbarComponent } from 'src/app/component/login-snackbar/login-snackbar.component';
 import { WalletSnackbarComponent } from 'src/app/component/wallet-snackbar/wallet-snackbar.component';
+import { AlertController } from '@ionic/angular';
 
 const EMPTY_CART = [];
 
@@ -25,7 +26,13 @@ export class CartPage implements OnInit {
   menus = [];
   quantity;
 
-  constructor(private mealService:MealService, private userService:UserService, private menuService:CantiniereService, private orderService: OrderService, private token_service:TokenStorageService, private _snackBar: MatSnackBar) { 
+  constructor(private mealService:MealService,
+    private userService:UserService,
+    private menuService:CantiniereService, 
+    private orderService: OrderService,
+    private token_service:TokenStorageService, 
+    private _snackBar: MatSnackBar,
+    private alertCtrl:AlertController) { 
     if (this.cart = {}) this.cart = EMPTY_CART;
     if (localStorage.getItem('cart')) this.cart = JSON.parse(localStorage.getItem('cart'));
     this.fillCartTable()
@@ -44,18 +51,21 @@ export class CartPage implements OnInit {
   }
 
   order() {
+    let now = new Date();
     if (this.token_service.getUser()) {
       if (this.userWallet < this.cartTotal) {
         this.openSnackBar('no money');
+      } else if ((now.getHours() >= 10 && now.getMinutes() >= 30) || now.getHours() > 10){
+        this.showAlert();
       } else {
         this.orderService.addOrder({
           userId: this.token_service.getUser().user.id,
           constraintId: -1,
           quantity: this.cart
           }).subscribe(
-          // data => console.log(data)
+            data => console.log(data)
           );
-          window.location.assign('/accueil');
+          // window.location.assign('/accueil');
       }
       
     } else {
@@ -179,6 +189,17 @@ export class CartPage implements OnInit {
       })
     }
   }
+
+  async showAlert() {  
+    const alert = await this.alertCtrl.create({  
+      header: 'Commande impossible',  
+      subHeader: `Les commandes se font avant 10h30 chaque jour`,  
+      buttons: ['J\'ai compris']  
+    });  
+    await alert.present();  
+    await alert.onDidDismiss();  
+    window.location.assign('/cart'); 
+  } 
 
 
 
